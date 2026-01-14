@@ -117,7 +117,7 @@
       #text(size: 32pt)[*#_name*]
     ],
     smallcaps[
-      #h(1fr) #link(_ghlink)[#text(blue)[*Github*]]\
+      #h(1fr) #link(_ghlink)[#text(blue)[* #_ghlink *]]\
       #h(1fr) #_phone\
       #h(1fr) #_email
     ]
