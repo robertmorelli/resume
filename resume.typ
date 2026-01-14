@@ -3,7 +3,7 @@
 
 #let big_bullets = false
 #let bullets = true
-#let lines = true
+#let lines = false
 #let left_titles = true
 #let date_parens = false
 
@@ -111,32 +111,6 @@
 
 //RESUME
 
-#let _resume_space(_name, _ghlink, _email, _phone, _blocks) = {
-  grid(columns: (1fr, 1fr),
-    smallcaps[
-      #text(size: 32pt)[*#_name*]
-    ],
-    smallcaps[
-      #h(1fr) #link(_ghlink)[#text(blue)[* #_ghlink *]]\
-      #h(1fr) #_phone\
-      #h(1fr) #_email
-    ]
-  )
-}
-
-#let _resume_nospace(_name, _ghlink, _email, _phone, _blocks) = {
-  grid(columns: (1fr, 1fr),
-    smallcaps[
-      #text(size: 32pt)[*#_name*]
-    ],
-    smallcaps[
-      #h(1fr) #link(_ghlink)[#text(blue)[*Github*]]\
-      #h(1fr) #_phone\
-      #h(1fr) #_email
-    ]
-  )
-}
-
 #let _all_blocks_nolines(_blocks) = {
   if _blocks.len() != 0 and left_titles [\ ]
   if left_titles {
@@ -154,11 +128,14 @@
 }
 
 #let _resume(_name, _ghlink, _email, _phone, _blocks) = {  
-  if bullets {
-    _resume_nospace(_name, _ghlink, _email, _phone, _blocks)
-  } else {
-    _resume_space(_name, _ghlink, _email, _phone, _blocks)
-  }
+  grid(columns: (1fr, 1fr),
+    smallcaps[#text(size: 32pt)[*#_name*]],
+    smallcaps[
+      #h(1fr) #link("https://github.com/" + _ghlink)[#text(blue)[*github.com/#_ghlink *]]\
+      #h(1fr) #_phone\
+      #h(1fr) #_email
+    ]
+  )
   if lines {
     _all_blocks_lines(_blocks) 
   } else {
@@ -166,14 +143,9 @@
   }
 }
 
-
-
-
-
-
 #_resume(
   [Robert Morelli],
-  "https://github.com/robertmorelli",
+  "robertmorelli",
   [robertondino\@outlook.com],
   [385 315 0034],
   (
