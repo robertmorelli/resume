@@ -1,5 +1,5 @@
 #set page(margin: (top: 0.5cm, bottom: 2cm, left: 0.5cm, right: 1cm))
-#set text(font: "Noto Sans", 8pt)
+#set text(font: ("Noto Sans", "DejaVu Sans"), 8pt)
 
 #let big_bullets = false
 #let bullets = true
@@ -73,7 +73,7 @@
 //BLOCK
 
 #let _block_left_title(_title, _items, _join) = {
-  grid(columns: (1fr, 8fr),
+  grid(columns: (1fr, 7fr),
     smallcaps[
       == #_title
     ],
@@ -194,6 +194,40 @@
             [2019 - 2022 _transferred_]
           ),
           ()
+        ),
+      )
+    ),
+    _block([Technology],
+      (
+        _item(
+          _nolink(
+            [Comfortable Languages],
+            [],
+            []
+          ),
+          (
+            [Python, C,  Zig, Dart, JS, TS, WASM (WAT), Java, C\#],
+          )
+        ),
+        _item(
+          _nolink(
+            [Familiar Languages],
+            [],
+            []
+          ),
+          (
+            [Ruby, C++, Rust, Swift, Metal, OpenCL, Typst, F\#, x86 assembly, MIPS assembly, PHP, Bash],
+          )
+        ),
+        _item(
+          _nolink(
+            [Misc],
+            [],
+            []
+          ),
+          (
+            [Flutter, Angular, Laravel, cicd/github actions/circleCi, css, html/svg, mongoDB, Cordova],
+          )
         ),
       )
     ),
@@ -415,40 +449,6 @@
               "https://www.janestreet.com/puzzles/sum-one-somewhere-solution/",
               [Apr 2025]
             ),
-          )
-        ),
-      )
-    ),
-    _block([Skills],
-      (
-        _item(
-          _nolink(
-            [Comfortable Languages],
-            [],
-            []
-          ),
-          (
-            [Python, C,  Zig, Dart, JS, TS, WASM (WAT), Java, C\#],
-          )
-        ),
-        _item(
-          _nolink(
-            [Familiar Languages],
-            [],
-            []
-          ),
-          (
-            [Ruby, C++, Rust, Swift, Metal, OpenCL, Typst, F\#, x86 assembly, MIPS assembly, PHP, Bash],
-          )
-        ),
-        _item(
-          _nolink(
-            [Misc],
-            [],
-            []
-          ),
-          (
-            [Flutter, Angular, Laravel, cicd/github actions/circleCi, css, html/svg, mongoDB, Cordova],
           )
         ),
       )
