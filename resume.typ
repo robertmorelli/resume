@@ -1,5 +1,3 @@
-
-
 #let _navy_blue = rgb("#001f8f")
 
 #let _big_bullets = false
@@ -60,7 +58,7 @@
 #let _link_symbol = "↗" //"🔗"
 #set text(
   _text_color,
-  font: "DejaVu Sans",
+  font: "Noto Sans",
   _base_font_size,
 )
 #set par(
@@ -255,9 +253,19 @@
 
 #let _resume(_name, _ghlink, _email, _phone, _blocks) = {  
   if _centered_header {
-    align(center)[#smallcaps[#text(size: 18pt)[*#_name*]]]
+    align(center)[
+      #smallcaps[
+        #text(size: 18pt)[*#_name*]
+        #if _no_links [
+          #v(0pt) *#smallcaps[robertmorelli.github.io/resume]*
+        ]
+      ]
+    ]
     columns(3)[
-      #align(left)[#_email]
+      #align(left)[
+        
+        #_email
+      ]
       #colbreak()
       #align(center)[
         #_header_link(_ghlink)
@@ -269,6 +277,9 @@
     grid(columns: (1fr, 1fr),
       smallcaps[#text(size: 32pt)[*#_name*]],
       smallcaps[
+        #if _no_links [
+          #h(1fr) *#smallcaps[robertmorelli.github.io/resume]*\
+        ]
         #h(1fr) #_header_link(_ghlink)\
         #h(1fr) #_phone\
         #h(1fr) #_email
