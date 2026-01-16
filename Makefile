@@ -1,7 +1,8 @@
 install_fonts:
-	mkdir -p "$HOME/.local/share/fonts"
-	cp -r /font/* "$HOME/.local/share/fonts/"
+	mkdir -p "$HOME/.local/share/fonts/Cartograph CF"
+	cp /fonts/*.woff* "$HOME/.local/share/fonts/Cartograph CF/"
 	fc-cache -f
+	fc-list | grep -i "Cartograph CF"
 
 website:
 	ls
