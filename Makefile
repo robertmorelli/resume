@@ -6,7 +6,7 @@ install_fonts:
 
 website:
 	ls
-	typst c resume.typ
+	typst c resume.typ --font-path "$(HOME)/.local/share/fonts"
 	ls
 	mv resume.pdf docs/index.pdf
 	ls
