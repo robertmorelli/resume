@@ -21,7 +21,7 @@
 #let _subtitles_seperated = true
 #let _right_aligned_italic = true
 #let _subtitle_seperator = "▪"//▒ ► ● | → ❯i ▪⑇⑊ ◆
-#let _link_symbol = "🔗" //"🔗" ↗
+#let _link_symbol = "↗" //"🔗" ↗
 
 #let _black = rgb("#151515")
 #let _darkmode_white = rgb("#eee")
