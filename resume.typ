@@ -3,19 +3,24 @@
 #let _big_bullets = false
 #let _bullets = false
 #let _lines = true
-#let _top_line = false
-#let _left_titles = false
+#let _top_line = true
+#let _left_titles = true
 #let _date_parens = false
-#let _line_above = true
+#let _line_above = false
 #let _centered_header = false
 #let _no_links = false
-#let _base_font_size = 8.1pt
-#let _density = 0.8
+#let _base_font_size = 7.3pt
+#let _density = 1.38
 #let _diff = 1.2
-#let _use_link_symbol = true
+#let _use_link_symbol = false
 #let _use_link_symbol_for_header = false
-#let _block_body_indentation = 3
+#let _block_body_indentation = 0
 #let _dark_mode = true
+#let _subtitles_italic = false
+#let _subtitles_underlined = false
+#let _subtitles_seperated = true
+#let _right_aligned_italic = true
+#let _subtitle_seperator = "▪"//▒ ► ● | → ❯i ▪⑇⑊ ◆
 
 #let _black = rgb("#151515")
 #let _darkmode_white = rgb("#eee")
@@ -58,7 +63,8 @@
 #let _link_symbol = "↗" //"🔗"
 #set text(
   _text_color,
-  font: "Noto Sans",
+  font: "Cartograph CF",
+  weight: 600,
   _base_font_size,
 )
 #set par(
@@ -73,8 +79,24 @@
     [~(#_content)]
   } else {
     h(1fr)
-    _content
+    if _right_aligned_italic [
+      _ #_content _
+    ] else {
+      _content
+    }
   }
+}
+
+#let _subtitles(_subcontent) = {
+  if _subtitles_italic [
+    #emph(_subcontent)
+  ] else if _subtitles_underlined [
+    #underline(_subcontent)
+  ] else if _subtitles_seperated and _subcontent != [] [
+    #_subtitle_seperator #_subcontent
+  ] else [
+    #_subcontent
+  ]
 }
 
 #let _true_link(_content, _subcontent, _url, _time) = {
@@ -82,7 +104,8 @@
     #link(_url)[
       #text(_link_color)[
         *#_content*
-        #emph(_subcontent)
+        // #h(_base_font_size / 2)
+        #_subtitles(_subcontent)
         #if _use_link_symbol {
           _link_symbol
         }
@@ -93,7 +116,11 @@
 }
 
 #let _nolink(_content, _subcontent, _time) = {
-  [*#_content* #emph(_subcontent)]
+  [
+    *#_content*
+    // #h(_base_font_size / 2)
+    #_subtitles(_subcontent)
+  ]
   _date(_time)
 }
 
@@ -154,7 +181,7 @@
       text(
         _block_title_color,
         size: _block_header_font_size,
-        weight: "bold",
+        weight: "black",
         _title,
       )
     ),
@@ -173,7 +200,7 @@
     text(
       _block_title_color,
       size: _block_header_font_size,
-      weight: "bold",
+      weight: "black",
       _title,
     )
   )
@@ -275,7 +302,7 @@
     ]
   } else {
     grid(columns: (1fr, 1fr),
-      smallcaps[#text(size: 32pt)[*#_name*]],
+      smallcaps[#text(size: 30pt)[*#_name*]],
       smallcaps[
         #if _no_links [
           #h(1fr) *#smallcaps[robertmorelli.github.io/resume]*\
@@ -306,15 +333,15 @@
           _nolink(
             [B.S. Computer Science (in progress)],
             [University of Utah],
-            [2022 - 2027 _expected_]
+            [2022 - 2027 expected]
           ),
           ()
         ),
         _item(
           _nolink(
             [A.S. Computer Science (incomplete)],
-            [Salt Lake Community College],
-            [2019 - 2022 _transferred_]
+            [SLCC],
+            [2019 - 2022 transferred]
           ),
           ()
         ),
@@ -349,7 +376,7 @@
             []
           ),
           (
-            [Bash, C++, CICD, CircleCi, Laravel, Metal, MongoDB,  OpenCL, PHP, Ruby, Rust, Swift],
+            [Bash, C++, CICD, CircleCi, Metal, MongoDB,  OpenCL, PHP, Ruby, Rust, Swift],
           )
         ),
       )
@@ -370,7 +397,7 @@
           _nolink(
             [Teaching Assistant],
             [University of Utah],
-            [Apr 2025 - present]
+            [Sep 2025 - present]
           ),
           (
             [Leading labs, grading, assisting students for COMP 1020],
@@ -463,7 +490,7 @@
             [2025]
           ),
           (
-            [CICD typst resume],
+            [Automated typst resume deployed to website],
           )
         ),
         _item(
