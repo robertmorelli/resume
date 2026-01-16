@@ -16,7 +16,7 @@ jobs:
           typst-version: 0.13.0
           allow-prereleases: true
       - name: "make website"
-        run: make website
+        run: make install_fonts && make website
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"

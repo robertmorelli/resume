@@ -1,4 +1,7 @@
-
+install_fonts:
+	mkdir -p "$HOME/.local/share/fonts"
+	cp -r /fonts/* "$HOME/.local/share/fonts/"
+	fc-cache -f
 
 website:
 	ls
