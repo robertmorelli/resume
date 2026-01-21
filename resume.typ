@@ -55,10 +55,10 @@
 
 #set page(
   margin: (
-    top: 1cm,
-    bottom: 1cm,
-    left: 1cm,
-    right: 1cm
+    top: 0.6cm,
+    bottom: 0.6cm,
+    left: 0.6cm,
+    right: 0.6cm
   ),
   fill: _page_background,
   background:
