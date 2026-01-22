@@ -503,7 +503,7 @@
             ,[2026]
           ),
           (
-            [Visualizer for lambda calculus beta reduction which traces arguments as they are distributed],
+            [Trace argument through function application with useful highlighting],
           )
         ),
         _item(
