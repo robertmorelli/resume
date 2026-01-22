@@ -433,7 +433,7 @@
           _nolink(
             [Research Assistant],
             [University of Utah],
-            [oct2025-]
+            [oct 2025 -]
           ),
           (
             [Benchmarking gradual typing in Meta's Cinder variant of python],
@@ -443,7 +443,7 @@
           _nolink(
             [Teaching Assistant],
             [University of Utah],
-            [sep2025-]
+            [sep 2025 -]
           ),
           (
             [Leading labs, grading, assisting students for COMP 1020],
@@ -453,7 +453,7 @@
           _nolink(
             [Software Engineer/Dev ops],
             [Stutor Inc.],
-            [sep2023-apr2024]
+            [sep 2023 - apr 2024]
           ),
           (
             [Architected automation pipeline],
@@ -464,7 +464,7 @@
           _nolink(
             [Web Developer/Dev Ops],
             [Jerran Software Solutions],
-            [apr2022-sep2023]
+            [apr 2022 - sep 2023]
           ),
           (
             [Overhauled LDS MTC QA/CICD workflow, substantially reducing regression burden],
@@ -475,7 +475,7 @@
           _nolink(
             [Research Assistant Intern],
             [Earl Keefe PhD],
-            [nov2020-jun2021]
+            [nov 2020 - jun 2021]
           ),
           (
             [Visualizations for anthropology research],
@@ -485,7 +485,7 @@
           _nolink(
             [Web Dev. Intern],
             [Frelii],
-            [may2019-sep2019]
+            [may 2019 - sep 2019]
           ),
           (
             [Web scraping SNPedia for AI training],
