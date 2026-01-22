@@ -397,7 +397,7 @@
           _nolink(
             [B.S. Computer Science],
             [University of Utah],
-            [expected 2027]
+            [expected may 2027]
           ),
           ()
         ),
