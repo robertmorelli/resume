@@ -9,9 +9,9 @@
 #let _line_above = false
 #let _centered_header = false
 #let _no_links = false
-#let _base_font_size = 7.2pt
-#let _density = 1.25
-#let _diff = 1.2
+#let _base_font_size = 8pt
+#let _density = 1.4
+#let _diff = 1.1
 #let _use_link_symbol = true
 #let _use_link_symbol_for_header = true
 #let _block_body_indentation = 0
@@ -436,7 +436,7 @@
             []
           ),
           (
-            [Angular, Bash, C, C\#, Cordova, C++, CI/CD, CircleCI, Flutter, Metal, MongoDB, MIPS ASM, OpenCL, PHP, Ruby, Rust, Swift, WASM (WAT)],
+            [Angular, Bash, C, C\#, Cordova, C++, CI/CD, CircleCI, Flutter, MongoDB, Rust, Swift],
           )
         ),
       )
@@ -447,7 +447,7 @@
           _nolink(
             [Research Assistant],
             [University of Utah],
-            [oct 2025 -]
+            [current]
           ),
           (
             [Benchmarking gradual typing in Meta's Cinder variant of Python],
@@ -457,17 +457,15 @@
           _nolink(
             [Teaching Assistant],
             [University of Utah],
-            [sep 2025 -]
+            [current]
           ),
-          (
-            [Leading labs, grading, assisting students in COMP 1020],
-          )
+          ()
         ),
         _item(
           _nolink(
             [Software Engineer/DevOps],
             [Stutor Inc.],
-            [sep 2023 - apr 2024]
+            []
           ),
           (
             [Architected automation pipeline],
@@ -478,7 +476,7 @@
           _nolink(
             [Web Developer/DevOps],
             [Jerran Software Solutions],
-            [apr 2022 - sep 2023]
+            []
           ),
           (
             [Overhauled LDS MTC QA/CICD workflow, substantially reducing regression burden],
@@ -488,22 +486,18 @@
         _item(
           _nolink(
             [Research Assistant Intern],
-            [Earl Keefe PhD],
-            [nov 2020 - jun 2021]
+            [Earl Keefe PhD/University of Utah],
+            []
           ),
-          (
-            [Visualizations for anthropology research],
-          )
+          ()
         ),
         _item(
           _nolink(
             [Web Development Intern],
             [Frelii],
-            [may 2019 - sep 2019]
+            []
           ),
-          (
-            [Web scraping SNPedia for AI training],
-          )
+          ()
         ),
       )
     ),
@@ -511,98 +505,10 @@
       (
         _item(
           _link(
-            [English language trie],
-            [zig wasm],
-            "https://robertmorelli.github.io/english"
-            ,[2026]
-          ),
-          (
-            [Dictionary of 236k words embedded into a 4 MB wasm trie for easy autocomplete],
-          )
-        ),
-        _item(
-          _link(
-            [VS Code typst extension],
-            [rust ts],
-            "https://marketplace.visualstudio.com/items?itemName=robertmorelli.megamist-typst"
-            ,[2026]
-          ),
-          (
-            [Extension for typst development that works on the web version of VS Code],
-          )
-        ),
-        _item(
-          _link(
-            [Lambda calculus beta reduction visualizer],
-            [js html],
-            "https://robertmorelli.github.io/beta_reduction_visualizer"
-            ,[2026]
-          ),
-          (
-            [Trace argument through function application with useful highlighting],
-          )
-        ),
-        _item(
-          _link(
-            [Optimized bead/gravity sort],
-            [zig],
-            "https://github.com/robertmorelli/bead_sort_u5x32"
-            ,[2026]
-          ),
-          (
-            [Bead sort via popcount intrinsics and bit matrix transpositions for 32 u5 integers],
-          )
-        ),
-        _item(
-          _link(
-            [Tiny nkey rollover tester OS],
-            [zig],
-            "https://github.com/robertmorelli/TinyNKRO.OS",
-            [2025]
-          ),
-          (
-            [Ported as OS class assignment to zig, demo of keyboard in and vga out],
-          )
-        ),
-        _item(
-          _link(
-            [Fast approximate change of base],
-            [python],
-            "https://github.com/robertmorelli/messy_print",
-            [2025]
-          ),
-          (
-            [Novel algorithm for printing numbers larger than $10^(10^5)$ efficiently],
-          )
-        ),
-        _item(
-          _link(
-            [Automated resume],
-            [typst],
-            "https://robertmorelli.github.io/resume/",
-            [2025]
-          ),
-          (
-            [Automated typst resume deployed to website],
-          )
-        ),
-        _item(
-          _link(
-            [Held-Karp],
-            [zig],
-            "https://github.com/robertmorelli/held_karp",
-            [2025]
-          ),
-          (
-            [Well optimized Held-Karp TSP algorithm using bitsets and Gosper's hack],
-          )
-        ),
-        _item(
-          _link(
-            [Spreadsheet formulas to DLL compiler],
-            [c],
+            [Spreadsheet DLL compiler],
+            [c\#],
             "https://github.com/robertmorelli/dll_compiler",
-            [2025]
+            []
           ),
           (
             [Compiles formulas in a spreadsheet into a DLL],
@@ -613,7 +519,7 @@
             [Color alchemy],
             [qt c++],
             "https://robertmorelli.github.io/color_alchemy/",
-            [2024]
+            []
           ),
           (
             [Beautiful game for learning color mixing, properly using oklab color space],
@@ -621,48 +527,123 @@
         ),
         _item(
           _link(
-            [CSS grid examples],
-            [css html],
-            "https://robertmorelli.github.io/grid_examples/",
-            [2024]
+            [English language trie],
+            [zig wasm],
+            "https://robertmorelli.github.io/english"
+            ,[]
           ),
           (
-            [Reference for common design patterns that should be implemented with css grid],
+            [Dictionary of 236k words embedded into a 4 MB wasm trie for easy autocomplete],
           )
+        ),
+        _item(
+          _link(
+            [Web VS Code typst extension],
+            [rust ts],
+            "https://marketplace.visualstudio.com/items?itemName=robertmorelli.megamist-typst"
+            ,[]
+          ),
+          ()
+        ),
+        _item(
+          _link(
+            [Lambda calculus beta reduction visualizer],
+            [js html],
+            "https://robertmorelli.github.io/beta_reduction_visualizer"
+            ,[]
+          ),
+          ()
+        ),
+        _item(
+          _link(
+            [Matrix transpose bead/gravity sort],
+            [zig],
+            "https://github.com/robertmorelli/bead_sort_u5x32"
+            ,[]
+          ),
+          ()
+        ),
+        _item(
+          _link(
+            [Tiny nkey rollover tester kernel],
+            [zig],
+            "https://github.com/robertmorelli/TinyNKRO.OS",
+            []
+          ),
+          ()
+        ),
+        _item(
+          _link(
+            [Really (really) big number printer],
+            [python],
+            "https://github.com/robertmorelli/messy_print",
+            []
+          ),
+          ()
+        ),
+        _item(
+          _link(
+            [Automated resume],
+            [typst],
+            "https://robertmorelli.github.io/resume/",
+            []
+          ),
+          ()
+        ),
+        _item(
+          _link(
+            [Held-Karp],
+            [zig],
+            "https://github.com/robertmorelli/held_karp",
+            []
+          ),
+          ()
+        ),
+        _item(
+          _link(
+            [CSS grid reference sheet],
+            [css html],
+            "https://robertmorelli.github.io/grid_examples/",
+            []
+          ),
+          ()
         ),
         _item(
           _link(
             [Randomized Pacman game],
             [java],
             "https://github.com/robertmorelli/randomized_pacman",
-            [2021]
+            []
           ),
-          (
-            [Pacman game using some algorithms from my 2420 class: A\*, DFS, BFS, Union find],
-          )
+          ()
         ),
         _item(
           _link(
             [Svg Animator],
             [html js css],
             "https://robertmorelli.github.io/svg_animator/",
-            [2019]
+            []
           ),
-          (
-            [Svg animator inspired by ms paint],
-          )
+          ()
         )
       ),
     ),
     _block([Misc],
       (
-        
+        _item(
+          _nolink(
+            [Event Coordinator],
+            [Technical Coding Club],
+            [2026]
+          ),
+          (),
+        ),
         _item(
           _link(
             [Contributed code field to instruction decoding],
             [MARS IDE],
             "https://github.com/dpetersanderson/MARS",
-            [2025]
+            []
           ),
           (),
         ),
