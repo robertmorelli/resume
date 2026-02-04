@@ -1,29 +1,29 @@
 #let _navy_blue = rgb("#001f8f")
 
 #let _big_bullets = false
-#let _bullets = false
+#let _bullets = true
 #let _lines = true
-#let _top_line = true
-#let _left_titles = true
+#let _top_line = false
+#let _left_titles = false
 #let _date_parens = false
 #let _line_above = false
 #let _centered_header = false
 #let _no_links = false
-#let _base_font_size = 8pt
-#let _density = 1.4
+#let _base_font_size = 7pt
+#let _density = 1.25
 #let _diff = 1.1
 #let _use_link_symbol = true
 #let _use_link_symbol_for_header = true
 #let _block_body_indentation = 0
 #let _dark_mode = true
-#let _subtitles_italic = false
+#let _subtitles_italic = true
 #let _subtitles_underlined = false
-#let _subtitles_separated = true
+#let _subtitles_seperated = true
 #let _right_aligned_italic = true
-#let _subtitle_separator = "▪"//▒ ► ● | → ❯i ▪⑇⑊ ◆
+#let _subtitle_seperator = "|"//"▪"//▒ ► ● | → ❯i ▪⑇⑊ ◆
 #let _link_symbol = "↗" //"🔗" ↗
 #let _frills = false
-#let _hide_dates = true
+#let _inline_lines = true
 
 #let _black = rgb("#151515")
 #let _darkmode_white = rgb("#eee")
@@ -147,12 +147,12 @@
 }
 
 #let _subtitles(_subcontent) = {
-  if _subtitles_italic [
-    #emph(_subcontent)
+  if _subtitles_italic and _subcontent != [] [
+    #_subtitle_seperator #emph(_subcontent) #_subtitle_seperator
   ] else if _subtitles_underlined [
     #underline(_subcontent)
-  ] else if _subtitles_separated and _subcontent != [] [
-    #_subtitle_separator #_subcontent
+  ] else if _subtitles_seperated and _subcontent != [] [
+    #_subtitle_seperator #_subcontent #_subtitle_seperator
   ] else [
     #_subcontent
   ]
@@ -257,18 +257,37 @@
   if _lines and _line_above {
     line(length: 100%, stroke: 0.5pt + _text_color)
   }
-  _shadow_text(
-    smallcaps(
-      text(
-        // _block_title_color,
-        size: _block_header_font_size,
-        weight: "black",
-        _title,
+  if _inline_lines {
+    _shadow_text(
+      smallcaps(
+        text(
+          // _block_title_color,
+          size: _block_header_font_size,
+          weight: "bold",
+          grid(columns: (auto, 10pt, 1fr),[
+            #_title
+          ],
+          [],
+          block(inset: (top: 3pt))[
+            #line(length: 100%, stroke: _text_color)
+          ]),
+        )
       )
     )
-  )
+  } else {
+    _shadow_text(
+      smallcaps(
+        text(
+          // _block_title_color,
+          size: _block_header_font_size,
+          weight: "bold",
+          _title,
+        )
+      )
+    )
+  }
   if _lines {
-    if not _line_above {
+    if not _line_above and not _inline_lines {
       line(length: 100%, stroke: 0.5pt + _text_color)
     }
   } else {
@@ -285,20 +304,6 @@
     _block_left_title(_title, _items, v(0pt))
   } else {
     _block_top_title(_title, _items, v(0pt))
-  }
-}
-
-#let _grid_item(_title, _url) = {}
-#let _grid_link(_title, _url) = {}
-
-#let _grid_left_title(_title, _items, _join, _cols) = {}
-#let _grid_top_title(_title, _items, _join, _cols) = {}
-
-#let _grid(_title, _grid_items, _cols) = {
-  if _left_titles {
-    _grid_left_title(_title, _items, v(0pt))
-  } else {
-    _grid_top_title(_title, _items, v(0pt))
   }
 }
 
@@ -327,10 +332,10 @@
   }
 }
 
-#let _true_header_link(_ghlink) = {
-  link("https://github.com/" + _ghlink)[
+#let _true_header_link(_text, _link) = {
+  link(_link)[
     #text(_link_color)[
-      *github.com/#_ghlink*
+      *#_text*
       #if _use_link_symbol_for_header {
         _link_symbol
       }
@@ -338,35 +343,36 @@
   ]
 }
 
-#let _no_header_link(_ghlink) = {
-  link("https://github.com/" + _ghlink)[
-    *github.com/#_ghlink*
+#let _no_header_link(_text, _link) = {
+  link(_link)[
+    *#_text*
     #if _use_link_symbol_for_header {
       _link_symbol
     }
   ]
 }
 
-#let _header_link(_ghlink) = {
+#let _header_link(_text, _link) = {
   if _no_links {
-    _no_header_link(_ghlink)
+    _no_header_link(_text, _link)
   } else {
-    _true_header_link(_ghlink)
+    _true_header_link(_text, _link)
   }
 }
 
-#let _resume(_name, _ghlink, _email, _phone, _blocks) = {  
+#let _resume(_name, _ghlink, _email, _phone, _linkedin, _blocks) = {  
   if _centered_header {
     align(center)[
       #smallcaps[
         #text(size: 18pt)[*#_name*]
         #if _no_links [
-          #v(0pt) *#smallcaps[robertmorelli.github.io/resume]*
+          #v(0pt) *#smallcaps[robertmorelli.GitHub.io/resume]*
         ]
       ]
     ]
     columns(3)[
       #align(left)[
+        
         #_email
       ]
       #colbreak()
@@ -377,15 +383,16 @@
       #align(right)[#_phone]
     ]
   } else {
-    grid(columns: (1fr, 1fr),
+    grid(columns: (3fr, 1fr),
       smallcaps[
         #_shadow_text(text(size: 30pt)[*#_name*])
       ],
       smallcaps[
-        #if _no_links [
-          #h(1fr) *#smallcaps[robertmorelli.github.io/resume]*\
-        ]
-        #h(1fr) #_header_link(_ghlink)\
+        // #if _no_links [
+        //   #h(1fr) *#smallcaps[robertmorelli.GitHub.io/resume]*\
+        // ]
+        #h(1fr) #_header_link(_ghlink.at(1), _ghlink.at(0))\
+        #h(1fr) #_header_link(_linkedin.at(1), _linkedin.at(0))\
         #h(1fr) #_phone\
         #h(1fr) #_email
       ]
@@ -400,10 +407,11 @@
 }
 
 #_resume(
-  [Robert Morelli],
-  "robertmorelli",
+  [Robert Ondino Morelli],
+  ("https://GitHub.com/robertmorelli", "GitHub:robertmorelli"),
   [robertondino\@outlook.com],
   [385 315 0034],
+  ("https://www.linkedin.com/in/robert-o-morelli/","linkedin:robert-o-morelli"),
   (
     _block([Education],
       (
@@ -411,7 +419,7 @@
           _nolink(
             [B.S. Computer Science],
             [University of Utah],
-            [expected may 2027]
+            [Expected May 2027]
           ),
           ()
         ),
@@ -421,22 +429,22 @@
       (
         _item(
           _nolink(
-            [Proficient],
+            [Languages],
             [],
             []
           ),
           (
-            [Dart, JS, CSS, SVG, HTML, Java, Python, TS, Typst, GitHub Actions, Zig],
+            [Zig, C/C++, Python, Java, TypeScript/JS],
           )
         ),
         _item(
           _nolink(
-            [Familiar],
+            [Tools],
             [],
             []
           ),
           (
-            [Angular, Bash, C, C\#, Cordova, C++, CI/CD, CircleCI, Flutter, MongoDB, Rust, Swift],
+            [Git, Docker, GitHub Actions, CI/CD],
           )
         ),
       )
@@ -447,214 +455,223 @@
           _nolink(
             [Research Assistant],
             [University of Utah],
-            [current]
+            [October 2025 - Present]
           ),
           (
-            [Benchmarking gradual typing in Meta's Cinder variant of Python],
+            [Analyzing performance cost of gradual typing in Meta's Cinder variant of Python],
+            [Automatic rewriting of Python code to construct test examples],
+            [Setting up docker containers and correct build environments],
           )
         ),
         _item(
           _nolink(
             [Teaching Assistant],
             [University of Utah],
-            [current]
+            [September 2025 - Present]
           ),
-          ()
+          (
+            [Leading labs, grading, assisting students for COMP 1020],
+          )
         ),
         _item(
           _nolink(
             [Software Engineer/DevOps],
             [Stutor Inc.],
-            []
+            [September 2023 - April 2024]
           ),
           (
-            [Architected automation pipeline],
-            [Optimized DB indexes, reducing query times by up to 8x],
+            [Architected automation pipeline using Fastlane and GitHub Actions to build, sign and deploy to multiple platforms],
+            [Added compound keys to tables where backend queries had drifted from database schema; Query times reduced from 15s+ to \<1s],
           )
         ),
         _item(
           _nolink(
             [Web Developer/DevOps],
             [Jerran Software Solutions],
-            []
+            [April 2022 - September 2023]
           ),
           (
-            [Overhauled LDS MTC QA/CICD workflow, substantially reducing regression burden],
-            [Rewrote Embark app startup to reduce first-time loading by up to 50%]
+            [Software consulting. Clients included LDS Church, Retro Game Vault and Stutor Inc.],
+            [Architected, proposed and implemented overhaul of development process for the LDS MTC team using build automation in conjunction with new QA practices. Deployment was reduced from a week-long headache to mere minutes],
+            [Rewrote Embark startup using dependency-ordered queue for async initializations; First-time loading reduced by 50%]
           )
         ),
         _item(
           _nolink(
             [Research Assistant Intern],
-            [Earl Keefe PhD/University of Utah],
-            []
+            [Earl Keefe PhD, University of Utah],
+            [November 2020 - June 2021]
           ),
-          ()
+          (
+            [Used pypng to construct novel visualizations of covariance matrices to provide more intuitive understanding of data],
+            [Implemented statistical formulas in clear code in order that a reviewer can be sure the results are correct and valid],
+          )
         ),
         _item(
           _nolink(
             [Web Development Intern],
             [Frelii],
-            []
+            [June 2019 - September 2019]
           ),
-          ()
+          (
+            [Implemented web scraping SNPedia for AI training using python with multiprocessing and BeautifulSoup],
+          )
         ),
       )
     ),
     _block([Projects],
       (
+        // _item(
+        //   _link(
+        //     [Beta reduction visualizer],
+        //     [js html],
+        //     "https://robertmorelli.GitHub.io/beta_reduction_visualizer"
+        //     ,[2026]
+        //   ),
+        //   (
+        //     [Trace argument through function application with useful highlighting],
+        //   )
+        // ),
+        // _item(
+        //   _link(
+        //     [Optimized bead/gravity sort],
+        //     [zig],
+        //     "https://GitHub.com/robertmorelli/bead_sort_u5x32"
+        //     ,[2026]
+        //   ),
+        //   (
+        //     [Bead sort via popcount intrinsics and bit matrix transpositions for 32 u5s],
+        //   )
+        // ),
+        // _item(
+        //   _link(
+        //     [Tiny nkey rollover tester OS],
+        //     [zig],
+        //     "https://GitHub.com/robertmorelli/TinyNKRO.OS",
+        //     [2025]
+        //   ),
+        //   (
+        //     [Ported as OS class assignment to zig, demo of keyboard in and vga out],
+        //   )
+        // ),
+        // _item(
+        //   _link(
+        //     [Fast approximate change of base],
+        //     [python],
+        //     "https://GitHub.com/robertmorelli/messy_print",
+        //     [2025]
+        //   ),
+        //   (
+        //     [Novel algorithm for printing numbers larger than $10^(10^5)$ efficiently],
+        //   )
+        // ),
+        // _item(
+        //   _link(
+        //     [Automated resume],
+        //     [typst],
+        //     "https://robertmorelli.GitHub.io/resume/",
+        //     [2025]
+        //   ),
+        //   (
+        //     [Automated typst resume deployed to website],
+        //   )
+        // ),
+        // _item(
+        //   _link(
+        //     [Held-karp],
+        //     [zig],
+        //     "https://GitHub.com/robertmorelli/held_karp",
+        //     [2025]
+        //   ),
+        //   (
+        //     [Well optimized Held-karp TSP algorithm using bitsets and Gosper's hack],
+        //   )
+        // ),
         _item(
           _link(
-            [Spreadsheet DLL compiler],
-            [c\#],
-            "https://github.com/robertmorelli/dll_compiler",
+            [Spreadsheet formulas to DLL compiler],
+            [C\#],
+            "https://GitHub.com/robertmorelli/dll_compiler",
             []
           ),
           (
-            [Compiles formulas in a spreadsheet into a DLL],
+            [Compiles spreadsheet formulas into a DLL],
+            [DLL class uses dependency graph to ensure fields are updated],
+            [Compilation supports optimizations including fast-math style unsafe float conversion],
+            [Adapted shunting-yard algorithm to construct AST],
           )
         ),
         _item(
           _link(
             [Color alchemy],
-            [qt c++],
-            "https://robertmorelli.github.io/color_alchemy/",
+            [Qt/C++],
+            "https://robertmorelli.GitHub.io/color_alchemy/",
             []
           ),
           (
-            [Beautiful game for learning color mixing, properly using oklab color space],
+            [Beautiful game for learning color mixing, properly using OKLab color space for gradient construction and scoring],
+            [Box2D used for bubble animations and flask physics],
           )
         ),
-        _item(
-          _link(
-            [English language trie],
-            [zig wasm],
-            "https://robertmorelli.github.io/english"
-            ,[]
-          ),
-          (
-            [Dictionary of 236k words embedded into a 4 MB wasm trie for easy autocomplete],
-          )
-        ),
-        _item(
-          _link(
-            [Web VS Code typst extension],
-            [rust ts],
-            "https://marketplace.visualstudio.com/items?itemName=robertmorelli.megamist-typst"
-            ,[]
-          ),
-          ()
-        ),
-        _item(
-          _link(
-            [Lambda calculus beta reduction visualizer],
-            [js html],
-            "https://robertmorelli.github.io/beta_reduction_visualizer"
-            ,[]
-          ),
-          ()
-        ),
-        _item(
-          _link(
-            [Matrix transpose bead/gravity sort],
-            [zig],
-            "https://github.com/robertmorelli/bead_sort_u5x32"
-            ,[]
-          ),
-          ()
-        ),
-        _item(
-          _link(
-            [Tiny nkey rollover tester kernel],
-            [zig],
-            "https://github.com/robertmorelli/TinyNKRO.OS",
-            []
-          ),
-          ()
-        ),
-        _item(
-          _link(
-            [Really (really) big number printer],
-            [python],
-            "https://github.com/robertmorelli/messy_print",
-            []
-          ),
-          ()
-        ),
-        _item(
-          _link(
-            [Automated resume],
-            [typst],
-            "https://robertmorelli.github.io/resume/",
-            []
-          ),
-          ()
-        ),
-        _item(
-          _link(
-            [Held-Karp],
-            [zig],
-            "https://github.com/robertmorelli/held_karp",
-            []
-          ),
-          ()
-        ),
-        _item(
-          _link(
-            [CSS grid reference sheet],
-            [css html],
-            "https://robertmorelli.github.io/grid_examples/",
-            []
-          ),
-          ()
-        ),
+        // _item(
+        //   _link(
+        //     [CSS grid examples],
+        //     [css html],
+        //     "https://robertmorelli.GitHub.io/grid_examples/",
+        //     [2024]
+        //   ),
+        //   (
+        //     [Reference for common design patterns that should be implemented with css grid],
+        //   )
+        // ),
         _item(
           _link(
             [Randomized Pacman game],
-            [java],
-            "https://github.com/robertmorelli/randomized_pacman",
+            [Java],
+            "https://GitHub.com/robertmorelli/randomized_pacman",
             []
           ),
-          ()
+          (
+            [Pacman game using some algorithms from my 2420 class: A\*, DFS, BFS, Union find],
+          )
         ),
         _item(
           _link(
-            [Svg Animator],
-            [html js css],
-            "https://robertmorelli.github.io/svg_animator/",
+            [SVG Animator],
+            [HTML/JS/CSS, SVG + SMIL],
+            "https://robertmorelli.GitHub.io/svg_animator/",
             []
           ),
-          ()
+          (
+            [Svg animator inspired by ms paint. Animations can be made with one click and no prior experience animating],
+          )
         )
       ),
     ),
     _block([Misc],
       (
         _item(
-          _nolink(
-            [Event Coordinator],
-            [Technical Coding Club],
-            [2026]
-          ),
-          (),
-        ),
-        _item(
           _link(
-            [Contributed code field to instruction decoding],
-            [MARS IDE],
-            "https://github.com/dpetersanderson/MARS",
+            [Contributed to open-source IDE code-base],
+            [MARS],
+            "https://GitHub.com/dpetersanderson/MARS",
             []
           ),
-          (),
+          (
+            [Discovered and corrected oversight in the MARS IDE's instruction decoder that affected correctness of self-modifying code],
+          ),
         ),
         _item(
           _link(
-            [\#12 Ranked team at Rocky Mountain Regional Contest],
+            [Competitive Programming],
             [ICPC],
             "https://rmc25.kattis.com/contests/rmc25/standings/site",
-            [2025]
+            []
           ),
-          (),
+          (
+            [As part of team "Big Cottonwood Coders", placed 12 out of 48 teams at the Rocky Mountain regional contest (2025)],
+            // [As event coordinator of the U of U technical coding club, organized and oversaw competitions (2026)],
+          ),
         ),
         _item(
           _nolink(
