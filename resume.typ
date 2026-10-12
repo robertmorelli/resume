@@ -9,14 +9,17 @@
 #let _line_above = false
 #let _centered_header = false
 #let _no_links = false
-#let _base_font_size = 6.7pt
-#let _density = 1.29
+#let _base_font_size = 9pt
+#let _density = 0.75
 #let _diff = 1.1
 #let _heading_diff = 1.5 // section heading size relative to base
-#let _body_weight = 800
-#let _stack_dates = true // dates sit in their own narrow right column, two lines tall
-#let _date_col = 51pt // widest stacked line, "to Sep 2019", is ~50pt
+#let _body_weight = 600
+#let _stacked_header = true // compact header: name left, contact details right
+#let _name_size = 20pt
+#let _stack_dates = false // true: dates in their own narrow right column, two lines tall
+#let _date_col = 69pt // widest stacked line, "to Sep 2023", is ~68pt at 9pt
 #let _gutter = 12pt // clear air between a bullet and its date
+#let _inline_date_col = 116pt // widest one-line date, "Sep 2025 – May 2026"; bullets stop short of it
 #let _use_link_symbol = true
 #let _use_link_symbol_for_header = true
 #let _block_body_indentation = 0
@@ -224,9 +227,9 @@
     text(size: _item_font_size, _title)
   }
   for _one_subitem in _contents {
-    // stacked dates own a right-hand column; descriptions stop short of it
+    // dates own a right-hand column; descriptions stop short of it
     block(
-      width: if _stack_dates { 100% - _date_col - _gutter } else { 100% },
+      width: 100% - (if _stack_dates { _date_col } else { _inline_date_col }) - _gutter,
       list(_one_subitem, indent: _base_font_size),
     )
   }
@@ -408,12 +411,18 @@
       #colbreak()
       #align(right)[#_phone]
     ]
+  } else if _stacked_header {
+    grid(columns: (auto, 1fr), align: horizon,
+      smallcaps[#h(-1pt)#_shadow_text(text(size: _name_size, tracking: -0.04em, weight: 900)[#_name])],
+      align(right, text(0.85em)[#_header_link(_ghlink.at(1), _ghlink.at(0)) #h(1.2em) #_header_link(_linkedin.at(1), _linkedin.at(0)) #h(1.2em) #_phone #h(1.2em) #_email]),
+    )
+    v(_base_font_size * 0.2)
   } else {
     grid(
       columns: (auto, 1fr),
       align: top,
       smallcaps[
-        #h(-1.3pt)#_shadow_text(text(size: 34pt, tracking: -0.04em, weight: 900)[#_name])
+        #h(-1.3pt)#_shadow_text(text(size: 32pt, tracking: -0.04em, weight: 900)[#_name])
       ],
       smallcaps[
         // #if _no_links [
@@ -451,8 +460,9 @@
         (),
       ),
     )),
-    _block([Familiarity], (
-      [Zig, C/C++, C\#, Python, Java, TypeScript/JS, WebAssembly/WasmGC, Qt, Git, Docker, GitHub Actions, Fastlane, CI/CD],
+    _block([Technical skills], (
+      // [Zig, C/C++, C\#, Python, Java, TypeScript/JS, WebAssembly/WasmGC, Qt, Git, Docker, GitHub Actions, Fastlane, CI/CD],
+      [Zig, C/C++, C\#, Python, Java, TS, WASM, Git, Docker, GitHub Actions, CI/CD],
     )),
     _block([Experience], (
       _item(
@@ -462,9 +472,9 @@
           _span([Oct 2025], [Present]),
         ),
         (
-          [Analyzing performance cost of gradual typing in Meta's Static Python (CinderX)],
+          [Analyzing performance cost of gradual typing\ in Meta's Static Python (CinderX)],
           [Automatic rewriting of Python code to construct test examples],
-          [First author, "Automatic Cast Insertion to Evaluate Progressive Gradual Types" (under review)],
+          [First author, "Automatic Cast Insertion\ to Evaluate Progressive Gradual Types" (under review)],
         ),
       ),
       _item(
@@ -484,20 +494,20 @@
           _span([Sep 2023], [Apr 2024]),
         ),
         (
-          [Architected automation pipeline using Fastlane and GitHub Actions to build, sign and deploy to multiple platforms],
-          [Added compound keys to tables where backend queries had drifted from database schema;\ query times reduced from 15+ s to \<1 s],
+          [Architected automation pipeline using Fastlane and GitHub Actions\ to build, sign and deploy to multiple platforms],
+          [Added compound keys to tables where backend queries had drifted\ from database schema; query times reduced from 15+ s to \<1 s],
         ),
       ),
       _item(
         _nolink(
           [Web Developer/DevOps],
-          [Jerran Software Solutions],
+          [Jerran Software Solutions, consulting],
           _span([Apr 2022], [Sep 2023]),
         ),
         (
-          [Software consulting; clients included the LDS Church, Retro Game Vault and Stutor Inc.],
-          [Architected, proposed and implemented overhaul of development process for the LDS MTC team using build automation in conjunction with new QA practices; deployment was reduced from a week-long headache to mere minutes],
-          [Rewrote Embark startup using dependency-ordered queue for async initializations; first-time loading reduced by 50%],
+          // [Software consulting; clients included the LDS Church, Retro Game Vault and Stutor Inc.],
+          [Architected, proposed and implemented overhaul of development process\ for the LDS MTC team using build automation\ in conjunction with new QA practices;\ deployment was reduced from a week-long headache to mere minutes],
+          [Rewrote Embark startup using dependency-ordered queue\ for async initializations; first-time loading reduced by 50%],
         ),
       ),
       _item(
@@ -507,20 +517,20 @@
           _span([Nov 2020], [Jun 2021]),
         ),
         (
-          [Used pypng to construct novel visualizations of covariance matrices to provide more intuitive understanding of data],
-          [Implemented statistical formulas in clear code in order that a reviewer can be sure the results are correct and valid],
+          [Used pypng to construct novel visualizations of covariance matrices\ to provide more intuitive understanding of data],
+          // [Implemented statistical formulas in clear code in order that a reviewer can be sure the results are correct and valid],
         ),
       ),
-      _item(
-        _nolink(
-          [Web Development Intern],
-          [Frelii],
-          _span([Jun 2019], [Sep 2019]),
-        ),
-        (
-          [Implemented web scraping SNPedia for AI training using Python with multiprocessing and BeautifulSoup],
-        ),
-      ),
+      // _item(
+        // _nolink(
+          // [Web Development Intern],
+          // [Frelii],
+          // _span([Jun 2019], [Sep 2019]),
+        // ),
+        // (
+          // [Implemented web scraping SNPedia for AI training using Python with multiprocessing and BeautifulSoup],
+        // ),
+      // ),
     )),
     _block([Projects], (
       _item(
@@ -531,7 +541,8 @@
           [],
         ),
         (
-          [The inverted regex fuzzer generates accept and reject string seeds\ and fuzzes patterns instead of inputs across \~25 engines],
+          // [The inverted regex fuzzer generates accept and reject string seeds\ and fuzzes patterns instead of inputs across \~25 engines],
+          [Fuzzes patterns instead of inputs: samples regexes\ that must match one fixed string and must reject another fixed string],
         ),
       ),
       _item(
@@ -542,7 +553,8 @@
           [],
         ),
         (
-          [The language AssemblyScript was meant to be: designed from the ground up to have predictable lowering to WasmGC, have small bundle size, and support .d.ts as an ABI],
+          // [The language AssemblyScript was meant to be: designed from the ground up to have predictable lowering to WasmGC, have small bundle size, and support .d.ts as an ABI],
+          [WasmGC language with predictable lowering,\ small bundles, and .d.ts as its ABI],
         ),
       ),
       // _item(
@@ -630,20 +642,20 @@
           [],
         ),
         (
-          [Compiles spreadsheet formulas into a DLL, supporting optimizations including fast-math style unsafe float conversion],
+          [Compiles spreadsheet formulas into a DLL,\ supporting optimizations including fast-math style unsafe float conversion],
         ),
       ),
-      _item(
-        _link(
-          [Color alchemy],
-          [Qt/C++],
-          "https://robertmorelli.GitHub.io/color_alchemy/",
-          [],
-        ),
-        (
-          [Beautiful game for learning color mixing, properly using OKLab color space for gradient construction and scoring],
-        ),
-      ),
+      // _item(
+        // _link(
+          // [Color alchemy],
+          // [Qt/C++],
+          // "https://robertmorelli.GitHub.io/color_alchemy/",
+          // [],
+        // ),
+        // (
+          // [Beautiful game for learning color mixing, properly using OKLab color space for gradient construction and scoring],
+        // ),
+      // ),
       // _item(
       //   _link(
       //     [CSS grid examples],
@@ -707,7 +719,8 @@
           [],
         ),
         (
-          [Reported 46 correctness bugs across a wide variety of regular expression engines including Perl, .NET and V8],
+          // [Reported 46 correctness bugs across a wide variety\ of regular expression engines including Perl, .NET and V8],
+          [Reported 86 correctness bugs across a wide variety\ of regular expression engines including Perl, .NET and V8],
         ),
       ),
       _item(
@@ -718,21 +731,21 @@
           [],
         ),
         (
-          [As part of team "Big Cottonwood Coders", placed 12 out of 48 teams at the Rocky Mountain regional contest (2025)],
-          [As Event Coordinator of the U of U technical coding club, organized and oversaw competitions (2026)],
+          [As part of team "Big Cottonwood Coders",\ placed 12 out of 48 teams at the Rocky Mountain regional contest (2025)],
+          [As Event Coordinator of the U of U technical coding club,\ organized and oversaw competitions (2026)],
         ),
       ),
-      _item(
-        _nolink(
-          [Jane Street leaderboard],
-          [],
-          [],
-        ),
-        (
-          _sublink([Number Cross 5], "https://www.janestreet.com/puzzles/number-cross-5-solution/"),
-          _sublink([Sum One, Somewhere], "https://www.janestreet.com/puzzles/sum-one-somewhere-solution/"),
-        ),
-      ),
+      // _item(
+        // _nolink(
+          // [Jane Street leaderboard],
+          // [],
+          // [],
+        // ),
+        // (
+          // _sublink([Number Cross 5], "https://www.janestreet.com/puzzles/number-cross-5-solution/"),
+          // _sublink([Sum One, Somewhere], "https://www.janestreet.com/puzzles/sum-one-somewhere-solution/"),
+        // ),
+      // ),
     )),
   ),
 )
