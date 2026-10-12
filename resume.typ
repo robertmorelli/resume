@@ -10,12 +10,12 @@
 #let _centered_header = false
 #let _no_links = false
 #let _base_font_size = 7pt
-#let _density = 1.25
+#let _density = 1.35
 #let _diff = 1.1
 #let _use_link_symbol = true
 #let _use_link_symbol_for_header = true
 #let _block_body_indentation = 0
-#let _dark_mode = false
+#let _dark_mode = true
 #let _subtitles_italic = true
 #let _subtitles_underlined = false
 #let _subtitles_seperated = true
@@ -59,30 +59,28 @@
     top: 0.6cm,
     bottom: 0.6cm,
     left: 0.6cm,
-    right: 0.6cm
+    right: 0.6cm,
   ),
   fill: _page_background,
-  background:
-    if _frills {
-      rect(
-        fill: tiling(
-          size: (10pt, 10pt),
-          text(
-            _link_color.transparentize(
-              if _dark_mode {
-                99.8%
-              } else {
-                98%
-              }
-            ),
-            size: 20pt,
-          )[░]
-        ),
-        width: 100%,
-        height: 100%
-      )
-    } else {
-    }
+  background: if _frills {
+    rect(
+      fill: tiling(
+        size: (10pt, 10pt),
+        text(
+          _link_color.transparentize(
+            if _dark_mode {
+              99.8%
+            } else {
+              98%
+            },
+          ),
+          size: 20pt,
+        )[░],
+      ),
+      width: 100%,
+      height: 100%,
+    )
+  } else {},
 )
 #let _double_offset = 0.005em
 #let _shadow_text(_text) = {
@@ -95,23 +93,23 @@
           //   .mix(_link_color)
           //   .mix(_link_color)
           //   .transparentize(10%)
-          rgb("#F0F")
-            )[
-              #_text
-            ]
+          rgb("#F0F"),
+        )[
+          #_text
+        ]
       ])
       #place(top + left, block(inset: (left: -_double_offset, top: -_double_offset))[
         #text(
           // _text_color
-            // .mix(_link_color)
-            // .mix(_link_color)
-            // .mix(_link_color)
-            // .transparentize(10%)
-            // red
-            rgb("#0F0")
-            )[
-              #_text
-            ]
+          // .mix(_link_color)
+          // .mix(_link_color)
+          // .mix(_link_color)
+          // .transparentize(10%)
+          // red
+          rgb("#0F0"),
+        )[
+          #_text
+        ]
       ])
       #place(top + left, text(_text_color)[#_text])
     ]
@@ -128,7 +126,7 @@
 )
 #set par(
   leading: _base_font_size * _density,
-  spacing: _base_font_size * _density
+  spacing: _base_font_size * _density,
 )
 #let _item_font_size = _base_font_size * _diff
 #let _block_header_font_size = _item_font_size * _diff
@@ -197,7 +195,7 @@
     list(
       text(
         size: _item_font_size,
-        _title
+        _title,
       ),
       indent: 0pt,
     )
@@ -235,7 +233,8 @@
 //BLOCK
 
 #let _block_left_title(_title, _items, _join) = {
-  grid(columns: (1fr, 6fr),
+  grid(
+    columns: (1fr, 6fr),
     _shadow_text(
       smallcaps(
         text(
@@ -243,13 +242,13 @@
           size: _block_header_font_size,
           weight: "black",
           _title,
-        )
-      )
+        ),
+      ),
     ),
     block(
-      inset: (top: _block_body_indentation/ 2 * _base_font_size),
-      _items.join(_join)
-    )
+      inset: (top: _block_body_indentation / 2 * _base_font_size),
+      _items.join(_join),
+    ),
   )
 }
 
@@ -264,15 +263,18 @@
           // _block_title_color,
           size: _block_header_font_size,
           weight: "bold",
-          grid(columns: (auto, 10pt, 1fr),[
-            #_title
-          ],
-          [],
-          block(inset: (top: 3pt))[
-            #line(length: 100%, stroke: _text_color)
-          ]),
-        )
-      )
+          grid(
+            columns: (auto, 10pt, 1fr),
+            [
+              #_title
+            ],
+            [],
+            block(inset: (top: 3pt))[
+              #line(length: 100%, stroke: _text_color)
+            ],
+          ),
+        ),
+      ),
     )
   } else {
     _shadow_text(
@@ -282,8 +284,8 @@
           size: _block_header_font_size,
           weight: "bold",
           _title,
-        )
-      )
+        ),
+      ),
     )
   }
   if _lines {
@@ -294,8 +296,8 @@
     v(_base_font_size * _density)
   }
   block(
-      inset: (left: _block_body_indentation * _base_font_size),
-      _items.join(_join)
+    inset: (left: _block_body_indentation * _base_font_size),
+    _items.join(_join),
   )
 }
 
@@ -313,16 +315,16 @@
   if _blocks.len() != 0 and _top_line and not _line_above {
     line(length: 100%, stroke: 1pt + _text_color)
   }
-  if _blocks.len() != 0 and _left_titles {v(_base_font_size * _density)}
+  if _blocks.len() != 0 and _left_titles { v(_base_font_size * _density) }
   if _left_titles {
-      _blocks.join(v(_base_font_size * _density))
+    _blocks.join(v(_base_font_size * _density))
   } else {
     _blocks.join(v(_base_font_size * _density))
   }
 }
 
 #let _all_blocks_lines(_blocks) = {
-  if _blocks.len() != 0 and _top_line and not _line_above  {
+  if _blocks.len() != 0 and _top_line and not _line_above {
     line(length: 100%, stroke: 1pt + _text_color)
   }
   if _left_titles {
@@ -360,7 +362,7 @@
   }
 }
 
-#let _resume(_name, _ghlink, _email, _phone, _linkedin, _blocks) = {  
+#let _resume(_name, _ghlink, _email, _phone, _linkedin, _blocks) = {
   if _centered_header {
     align(center)[
       #smallcaps[
@@ -372,7 +374,7 @@
     ]
     columns(3)[
       #align(left)[
-        
+
         #_email
       ]
       #colbreak()
@@ -383,7 +385,8 @@
       #align(right)[#_phone]
     ]
   } else {
-    grid(columns: (3fr, 1fr),
+    grid(
+      columns: (3fr, 1fr),
       smallcaps[
         #_shadow_text(text(size: 30pt)[*#_name*])
       ],
@@ -395,14 +398,14 @@
         #h(1fr) #_header_link(_linkedin.at(1), _linkedin.at(0))\
         #h(1fr) #_phone\
         #h(1fr) #_email
-      ]
+      ],
     )
   }
-  
+
   if _lines {
-    _all_blocks_lines(_blocks) 
+    _all_blocks_lines(_blocks)
   } else {
-    _all_blocks_no_lines(_blocks) 
+    _all_blocks_no_lines(_blocks)
   }
 }
 
@@ -411,290 +414,329 @@
   ("https://GitHub.com/robertmorelli", "GitHub:robertmorelli"),
   [robertondino\@outlook.com],
   [385 315 0034],
-  ("https://www.linkedin.com/in/robert-o-morelli/","linkedin:robert-o-morelli"),
+  ("https://www.linkedin.com/in/robert-o-morelli/", "linkedin:robert-o-morelli"),
   (
-    _block([Education],
-      (
-        _item(
-          _nolink(
-            [B.S. Computer Science],
-            [University of Utah],
-            [Expected May 2027]
-          ),
-          ()
+    _block([Education], (
+      _item(
+        _nolink(
+          [B.S. Computer Science],
+          [University of Utah],
+          [Expected May 2027],
         ),
-      )
-    ),
-    _block([Skills],
-      (
-        _item(
-          _nolink(
-            [Languages],
-            [],
-            []
-          ),
-          (
-            [Zig, C/C++, Python, Java, TypeScript/JS],
-          )
-        ),
-        _item(
-          _nolink(
-            [Tools],
-            [],
-            []
-          ),
-          (
-            [Git, Docker, GitHub Actions, CI/CD],
-          )
-        ),
-      )
-    ),
-    _block([Experience],
-      (
-        _item(
-          _nolink(
-            [Research Assistant],
-            [University of Utah],
-            [October 2025 - Present]
-          ),
-          (
-            [Analyzing performance cost of gradual typing in Meta's Cinder variant of Python],
-            [Automatic rewriting of Python code to construct test examples],
-            [Setting up docker containers and correct build environments],
-          )
-        ),
-        _item(
-          _nolink(
-            [Teaching Assistant],
-            [University of Utah],
-            [September 2025 - Present]
-          ),
-          (
-            [Leading labs, grading, assisting students for COMP 1020],
-          )
-        ),
-        _item(
-          _nolink(
-            [Software Engineer/DevOps],
-            [Stutor Inc.],
-            [September 2023 - April 2024]
-          ),
-          (
-            [Architected automation pipeline using Fastlane and GitHub Actions to build, sign and deploy to multiple platforms],
-            [Added compound keys to tables where backend queries had drifted from database schema; Query times reduced from 15s+ to \<1s],
-          )
-        ),
-        _item(
-          _nolink(
-            [Web Developer/DevOps],
-            [Jerran Software Solutions],
-            [April 2022 - September 2023]
-          ),
-          (
-            [Software consulting. Clients included LDS Church, Retro Game Vault and Stutor Inc.],
-            [Architected, proposed and implemented overhaul of development process for the LDS MTC team using build automation in conjunction with new QA practices. Deployment was reduced from a week-long headache to mere minutes],
-            [Rewrote Embark startup using dependency-ordered queue for async initializations; First-time loading reduced by 50%]
-          )
-        ),
-        _item(
-          _nolink(
-            [Research Assistant Intern],
-            [Earl Keefe PhD, University of Utah],
-            [November 2020 - June 2021]
-          ),
-          (
-            [Used pypng to construct novel visualizations of covariance matrices to provide more intuitive understanding of data],
-            [Implemented statistical formulas in clear code in order that a reviewer can be sure the results are correct and valid],
-          )
-        ),
-        _item(
-          _nolink(
-            [Web Development Intern],
-            [Frelii],
-            [June 2019 - September 2019]
-          ),
-          (
-            [Implemented web scraping SNPedia for AI training using python with multiprocessing and BeautifulSoup],
-          )
-        ),
-      )
-    ),
-    _block([Projects],
-      (
-        // _item(
-        //   _link(
-        //     [Beta reduction visualizer],
-        //     [js html],
-        //     "https://robertmorelli.GitHub.io/beta_reduction_visualizer"
-        //     ,[2026]
-        //   ),
-        //   (
-        //     [Trace argument through function application with useful highlighting],
-        //   )
-        // ),
-        // _item(
-        //   _link(
-        //     [Optimized bead/gravity sort],
-        //     [zig],
-        //     "https://GitHub.com/robertmorelli/bead_sort_u5x32"
-        //     ,[2026]
-        //   ),
-        //   (
-        //     [Bead sort via popcount intrinsics and bit matrix transpositions for 32 u5s],
-        //   )
-        // ),
-        // _item(
-        //   _link(
-        //     [Tiny nkey rollover tester OS],
-        //     [zig],
-        //     "https://GitHub.com/robertmorelli/TinyNKRO.OS",
-        //     [2025]
-        //   ),
-        //   (
-        //     [Ported as OS class assignment to zig, demo of keyboard in and vga out],
-        //   )
-        // ),
-        // _item(
-        //   _link(
-        //     [Fast approximate change of base],
-        //     [python],
-        //     "https://GitHub.com/robertmorelli/messy_print",
-        //     [2025]
-        //   ),
-        //   (
-        //     [Novel algorithm for printing numbers larger than $10^(10^5)$ efficiently],
-        //   )
-        // ),
-        // _item(
-        //   _link(
-        //     [Automated resume],
-        //     [typst],
-        //     "https://robertmorelli.GitHub.io/resume/",
-        //     [2025]
-        //   ),
-        //   (
-        //     [Automated typst resume deployed to website],
-        //   )
-        // ),
-        // _item(
-        //   _link(
-        //     [Held-karp],
-        //     [zig],
-        //     "https://GitHub.com/robertmorelli/held_karp",
-        //     [2025]
-        //   ),
-        //   (
-        //     [Well optimized Held-karp TSP algorithm using bitsets and Gosper's hack],
-        //   )
-        // ),
-        _item(
-          _link(
-            [Spreadsheet formulas to DLL compiler],
-            [C\#],
-            "https://GitHub.com/robertmorelli/dll_compiler",
-            []
-          ),
-          (
-            [Compiles spreadsheet formulas into a DLL],
-            [DLL class uses dependency graph to ensure fields are updated],
-            [Compilation supports optimizations including fast-math style unsafe float conversion],
-            [Adapted shunting-yard algorithm to construct AST],
-          )
-        ),
-        _item(
-          _link(
-            [Color alchemy],
-            [Qt/C++],
-            "https://robertmorelli.GitHub.io/color_alchemy/",
-            []
-          ),
-          (
-            [Beautiful game for learning color mixing, properly using OKLab color space for gradient construction and scoring],
-            [Box2D used for bubble animations and flask physics],
-          )
-        ),
-        // _item(
-        //   _link(
-        //     [CSS grid examples],
-        //     [css html],
-        //     "https://robertmorelli.GitHub.io/grid_examples/",
-        //     [2024]
-        //   ),
-        //   (
-        //     [Reference for common design patterns that should be implemented with css grid],
-        //   )
-        // ),
-        _item(
-          _link(
-            [Randomized Pacman game],
-            [Java],
-            "https://GitHub.com/robertmorelli/randomized_pacman",
-            []
-          ),
-          (
-            [Pacman game using some algorithms from my 2420 class: A\*, DFS, BFS, Union find],
-          )
-        ),
-        _item(
-          _link(
-            [SVG Animator],
-            [HTML/JS/CSS, SVG + SMIL],
-            "https://robertmorelli.GitHub.io/svg_animator/",
-            []
-          ),
-          (
-            [Svg animator inspired by ms paint. Animations can be made with one click and no prior experience animating],
-          )
-        )
+        (),
       ),
-    ),
-    _block([Misc],
-      (
-        _item(
-          _link(
-            [Contributed to open-source IDE code-base],
-            [MARS],
-            "https://GitHub.com/dpetersanderson/MARS",
-            []
-          ),
-          (
-            [Discovered and corrected oversight in the MARS IDE's instruction decoder that affected correctness of self-modifying code],
-          ),
+    )),
+    _block([Skills], (
+      _item(
+        _nolink(
+          [Languages],
+          [],
+          [],
         ),
-        _item(
-          _link(
-            [Competitive Programming],
-            [ICPC],
-            "https://rmc25.kattis.com/contests/rmc25/standings/site",
-            []
-          ),
-          (
-            [As part of team "Big Cottonwood Coders", placed 12 out of 48 teams at the Rocky Mountain regional contest (2025)],
-            // [As event coordinator of the U of U technical coding club, organized and oversaw competitions (2026)],
-          ),
+        (
+          [Zig, C/C++, Python, Java, TypeScript/JS],
         ),
-        _item(
-          _nolink(
-            [Jane Street Leaderboard],
+      ),
+      _item(
+        _nolink(
+          [Tools],
+          [],
+          [],
+        ),
+        (
+          [Git, Docker, GitHub Actions, CI/CD],
+        ),
+      ),
+    )),
+    _block([Experience], (
+      _item(
+        _nolink(
+          [Research Assistant],
+          [University of Utah],
+          [October 2025 - Present],
+        ),
+        (
+          [Analyzing performance cost of gradual typing in Meta's Static Python (CinderX)],
+          [Automatic rewriting of Python code to construct test examples],
+          [First author, "Automatic Cast Insertion to Evaluate Progressive Gradual Types" (under review)],
+        ),
+      ),
+      _item(
+        _nolink(
+          [Teaching Assistant],
+          [University of Utah],
+          [September 2025 - May 2026],
+        ),
+        (
+          [Led labs, graded, and assisted students for COMP 1020],
+        ),
+      ),
+      _item(
+        _nolink(
+          [Software Engineer/DevOps],
+          [Stutor Inc.],
+          [September 2023 - April 2024],
+        ),
+        (
+          [Architected automation pipeline using Fastlane and GitHub Actions to build, sign and deploy to multiple platforms],
+          [Added compound keys to tables where backend queries had drifted from database schema; query times reduced from 15s+ to \<1s],
+        ),
+      ),
+      _item(
+        _nolink(
+          [Web Developer/DevOps],
+          [Jerran Software Solutions],
+          [April 2022 - September 2023],
+        ),
+        (
+          [Software consulting. Clients included LDS Church, Retro Game Vault and Stutor Inc.],
+          [Architected, proposed and implemented overhaul of development process for the LDS MTC team using build automation in conjunction with new QA practices. Deployment was reduced from a week-long headache to mere minutes],
+          [Rewrote Embark startup using dependency-ordered queue for async initializations; First-time loading reduced by 50%],
+        ),
+      ),
+      _item(
+        _nolink(
+          [Research Assistant Intern],
+          [Earl Keefe PhD, University of Utah],
+          [November 2020 - June 2021],
+        ),
+        (
+          [Used pypng to construct novel visualizations of covariance matrices to provide more intuitive understanding of data],
+          [Implemented statistical formulas in clear code in order that a reviewer can be sure the results are correct and valid],
+        ),
+      ),
+      _item(
+        _nolink(
+          [Web Development Intern],
+          [Frelii],
+          [June 2019 - September 2019],
+        ),
+        (
+          [Implemented web scraping SNPedia for AI training using python with multiprocessing and BeautifulSoup],
+        ),
+      ),
+    )),
+    _block([Projects], (
+      _item(
+        _link(
+          [IRX regex fuzzer],
+          [Zig],
+          "https://github.com/robertmorelli/irx",
+          [],
+        ),
+        (
+          [The inverted regex fuzzer generates accept and reject string seeds and fuzzes patterns instead of inputs across \~25 engines],
+        ),
+      ),
+      _item(
+        _link(
+          [UTU language and compiler],
+          [JS/TS, WasmGC],
+          "https://github.com/robertmorelli/utu",
+          [],
+        ),
+        (
+          [The language AssemblyScript was meant to be. A language designed from the ground up to have predictable lowering to WasmGC, have small bundle size, and support .d.ts as an ABI],
+        ),
+      ),
+      // _item(
+      //   _link(
+      //     [MIPS assembly extension for VS Code],
+      //     [TypeScript, Java],
+      //     "https://marketplace.visualstudio.com/items?itemName=robertmorelli.mips-assembly",
+      //     [],
+      //   ),
+      //   (
+      //     [LSP diagnostics, hover and go-to-definition, plus running and assembling via MARS; 300+ installs],
+      //   ),
+      // ),
+      // _item(
+      //   _link(
+      //     [Beta reduction visualizer],
+      //     [js html],
+      //     "https://robertmorelli.GitHub.io/beta_reduction_visualizer"
+      //     ,[2026]
+      //   ),
+      //   (
+      //     [Trace argument through function application with useful highlighting],
+      //   )
+      // ),
+      // _item(
+      //   _link(
+      //     [Optimized bead/gravity sort],
+      //     [zig],
+      //     "https://GitHub.com/robertmorelli/bead_sort_u5x32"
+      //     ,[2026]
+      //   ),
+      //   (
+      //     [Bead sort via popcount intrinsics and bit matrix transpositions for 32 u5s],
+      //   )
+      // ),
+      // _item(
+      //   _link(
+      //     [Tiny nkey rollover tester OS],
+      //     [zig],
+      //     "https://GitHub.com/robertmorelli/TinyNKRO.OS",
+      //     [2025]
+      //   ),
+      //   (
+      //     [Ported as OS class assignment to zig, demo of keyboard in and vga out],
+      //   )
+      // ),
+      // _item(
+      //   _link(
+      //     [Fast approximate change of base],
+      //     [python],
+      //     "https://GitHub.com/robertmorelli/messy_print",
+      //     [2025]
+      //   ),
+      //   (
+      //     [Novel algorithm for printing numbers larger than $10^(10^5)$ efficiently],
+      //   )
+      // ),
+      // _item(
+      //   _link(
+      //     [Automated resume],
+      //     [typst],
+      //     "https://robertmorelli.GitHub.io/resume/",
+      //     [2025]
+      //   ),
+      //   (
+      //     [Automated typst resume deployed to website],
+      //   )
+      // ),
+      // _item(
+      //   _link(
+      //     [Held-karp],
+      //     [zig],
+      //     "https://GitHub.com/robertmorelli/held_karp",
+      //     [2025]
+      //   ),
+      //   (
+      //     [Well optimized Held-karp TSP algorithm using bitsets and Gosper's hack],
+      //   )
+      // ),
+      _item(
+        _link(
+          [Spreadsheet formulas to DLL compiler],
+          [C\#],
+          "https://GitHub.com/robertmorelli/dll_compiler",
+          [],
+        ),
+        (
+          [Compiles spreadsheet formulas into a DLL, supporting optimizations including fast-math style unsafe float conversion],
+        ),
+      ),
+      _item(
+        _link(
+          [Color alchemy],
+          [Qt/C++],
+          "https://robertmorelli.GitHub.io/color_alchemy/",
+          [],
+        ),
+        (
+          [Beautiful game for learning color mixing, properly using OKLab color space for gradient construction and scoring],
+        ),
+      ),
+      // _item(
+      //   _link(
+      //     [CSS grid examples],
+      //     [css html],
+      //     "https://robertmorelli.GitHub.io/grid_examples/",
+      //     [2024]
+      //   ),
+      //   (
+      //     [Reference for common design patterns that should be implemented with css grid],
+      //   )
+      // ),
+      // _item(
+      //   _link(
+      //     [Randomized Pacman game],
+      //     [Java],
+      //     "https://GitHub.com/robertmorelli/randomized_pacman",
+      //     [],
+      //   ),
+      //   (
+      //     [Pacman game using some algorithms from my 2420 class: A\*, DFS, BFS, Union find],
+      //   ),
+      // ),
+      // _item(
+      //   _link(
+      //     [SVG Animator],
+      //     [HTML/JS/CSS, SVG + SMIL],
+      //     "https://robertmorelli.GitHub.io/svg_animator/",
+      //     [],
+      //   ),
+      //   (
+      //     [Svg animator inspired by ms paint. Animations can be made with one click and no prior experience animating],
+      //   ),
+      // ),
+    )),
+    _block([Misc], (
+      _item(
+        _link(
+          [Contributed to open-source IDE code-base],
+          [MARS],
+          "https://GitHub.com/dpetersanderson/MARS",
+          [],
+        ),
+        (
+          [Discovered and corrected oversight in the MARS IDE's instruction decoder that affected correctness of self-modifying code],
+        ),
+      ),
+      _item(
+        _nolink(
+          [CinderX bug hunting],
+          [CinderX],
+          [],
+        ),
+        (
+          [Reported 11 bugs in CinderX and contributed 2 fixes to the type-checker],
+        ),
+      ),
+      _item(
+        _nolink(
+          [Regex bug hunting],
+          [],
+          [],
+        ),
+        (
+          [Reported 46 correctness bugs across a wide variety of regular expression engines including Perl, .NET and V8],
+        ),
+      ),
+      _item(
+        _link(
+          [Competitive Programming],
+          [ICPC],
+          "https://rmc25.kattis.com/contests/rmc25/standings/site",
+          [],
+        ),
+        (
+          [As part of team "Big Cottonwood Coders", placed 12 out of 48 teams at the Rocky Mountain regional contest (2025)],
+          [As Event Coordinator of the U of U technical coding club, organized and oversaw competitions (2026)],
+        ),
+      ),
+      _item(
+        _nolink(
+          [Jane Street Leaderboard],
+          [],
+          [],
+        ),
+        (
+          _link(
+            [Number Cross 5],
             [],
-            []
+            "https://www.janestreet.com/puzzles/number-cross-5-solution/",
+            [],
           ),
-          (
-            _link(
-              [Number Cross 5],
-              [],
-              "https://www.janestreet.com/puzzles/number-cross-5-solution/",
-              []
-            ),
-            _link(
-              [Sum One, Somewhere],
-              [],
-              "https://www.janestreet.com/puzzles/sum-one-somewhere-solution/",
-              []
-            ),
-          )
+          _link(
+            [Sum One, Somewhere],
+            [],
+            "https://www.janestreet.com/puzzles/sum-one-somewhere-solution/",
+            [],
+          ),
         ),
-      )
-    ),
-  )
+      ),
+    )),
+  ),
 )
