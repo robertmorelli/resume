@@ -9,18 +9,24 @@
 #let _line_above = false
 #let _centered_header = false
 #let _no_links = false
-#let _base_font_size = 7pt
-#let _density = 1.35
+#let _base_font_size = 6.7pt
+#let _density = 1.29
 #let _diff = 1.1
+#let _heading_diff = 1.5 // section heading size relative to base
+#let _body_weight = 800
+#let _stack_dates = true // dates sit in their own narrow right column, two lines tall
+#let _date_col = 51pt // widest stacked line, "to Sep 2019", is ~50pt
+#let _gutter = 12pt // clear air between a bullet and its date
 #let _use_link_symbol = true
 #let _use_link_symbol_for_header = true
 #let _block_body_indentation = 0
-#let _dark_mode = true
+#let _dark_mode = false
 #let _subtitles_italic = true
 #let _subtitles_underlined = false
 #let _subtitles_seperated = true
 #let _right_aligned_italic = true
 #let _subtitle_seperator = "|"//"▪"//▒ ► ● | → ❯i ▪⑇⑊ ◆
+#let _subtitle_wrap = ("[", "]") // wraps the italic subtitle; ("(", ")") etc
 #let _link_symbol = "↗" //"🔗" ↗
 #let _frills = false
 #let _inline_lines = true
@@ -34,8 +40,11 @@
   rgb("#eae")
 } else {
   // _navy_blue
-  rgb("#0bb")
+  // rgb("#0bb")
+  rgb("#00cdb8")
 }
+
+#let _rule_color = if _dark_mode { rgb("#eee") } else { rgb("#151515") } // full contrast: hard edges
 
 #let _block_title_color = if _dark_mode {
   _darkmode_white
@@ -56,8 +65,8 @@
 
 #set page(
   margin: (
-    top: 0.6cm,
-    bottom: 0.6cm,
+    top: 0.8cm,
+    bottom: 0.7cm,
     left: 0.6cm,
     right: 0.6cm,
   ),
@@ -121,19 +130,27 @@
 #set text(
   _text_color,
   font: "Cartograph CF",
-  weight: 600,
+  weight: _body_weight,
   _base_font_size,
 )
+// bold = font's heaviest weight, so titles never fall below a heavy body
+#show strong: it => text(weight: 900, it.body)
 #set par(
   leading: _base_font_size * _density,
   spacing: _base_font_size * _density,
 )
 #let _item_font_size = _base_font_size * _diff
-#let _block_header_font_size = _item_font_size * _diff
+#let _block_header_font_size = _base_font_size * _heading_diff
 
 #let _date(_content) = {
   if _date_parens and _content != [] {
     [~(#_content)]
+  } else if _stack_dates {
+    if _content != [] {
+      place(top + right, block(width: _date_col, align(right,
+        if _right_aligned_italic { emph(_content) } else { _content },
+      )))
+    }
   } else {
     h(1fr)
     if _right_aligned_italic [
@@ -144,9 +161,11 @@
   }
 }
 
+#let _span(_from, _to) = if _stack_dates [#_from\ to #_to] else [#_from – #_to]
+
 #let _subtitles(_subcontent) = {
   if _subtitles_italic and _subcontent != [] [
-    #_subtitle_seperator #emph(_subcontent) #_subtitle_seperator
+    #emph[#_subtitle_wrap.at(0)#_subcontent#_subtitle_wrap.at(1)]
   ] else if _subtitles_underlined [
     #underline(_subcontent)
   ] else if _subtitles_seperated and _subcontent != [] [
@@ -159,14 +178,12 @@
 #let _true_link(_content, _subcontent, _url, _time) = {
   [
     #link(_url)[
-      #text(_link_color)[
-        *#_content*
-        // #h(_base_font_size / 2)
-        #_subtitles(_subcontent)
-        #if _use_link_symbol {
-          _link_symbol
-        }
-      ]
+      *#_content*
+      // #h(_base_font_size / 2)
+      #_subtitles(_subcontent)
+      #if _use_link_symbol {
+        text(_link_color, weight: "black", _link_symbol)
+      }
     ]
   ]
   _date(_time)
@@ -181,6 +198,10 @@
   ])
 }
 
+#let _sublink(_content, _url) = {
+  link(_url)[#_content #text(_link_color, weight: "black", _link_symbol)]
+}
+
 #let _link(_content, _subcontent, _url, _time) = {
   if _no_links {
     _nolink(_content, _subcontent, _time)
@@ -190,7 +211,7 @@
 }
 
 //ITEMS
-#let _item_bullets(_title, _contents) = {
+#let _item_bullets(_title, _contents) = block(width: 100%, {
   if _bullets and _big_bullets {
     list(
       text(
@@ -203,12 +224,16 @@
     text(size: _item_font_size, _title)
   }
   for _one_subitem in _contents {
-    list(_one_subitem, indent: _base_font_size)
+    // stacked dates own a right-hand column; descriptions stop short of it
+    block(
+      width: if _stack_dates { 100% - _date_col - _gutter } else { 100% },
+      list(_one_subitem, indent: _base_font_size),
+    )
   }
   if _contents.len() == 0 and not _big_bullets {
     v(0pt)
   }
-}
+})
 
 #let _subitem_no_bullets(_content) = {
   block(inset: (left: _base_font_size), width: 80%)[#_content]
@@ -262,15 +287,16 @@
         text(
           // _block_title_color,
           size: _block_header_font_size,
-          weight: "bold",
+          weight: "black",
+          fill: _link_color,
           grid(
             columns: (auto, 10pt, 1fr),
             [
               #_title
             ],
             [],
-            block(inset: (top: 3pt))[
-              #line(length: 100%, stroke: _text_color)
+            block(inset: (top: 0.45em))[
+              #line(length: 100%, stroke: 1pt + _rule_color)
             ],
           ),
         ),
@@ -305,7 +331,7 @@
   if _left_titles {
     _block_left_title(_title, _items, v(0pt))
   } else {
-    _block_top_title(_title, _items, v(0pt))
+    _block_top_title(_title, _items, v(_base_font_size * 0.5))
   }
 }
 
@@ -336,12 +362,10 @@
 
 #let _true_header_link(_text, _link) = {
   link(_link)[
-    #text(_link_color)[
-      *#_text*
-      #if _use_link_symbol_for_header {
-        _link_symbol
-      }
-    ]
+    *#_text*
+    #if _use_link_symbol_for_header {
+      text(_link_color, weight: "black", _link_symbol)
+    }
   ]
 }
 
@@ -386,9 +410,10 @@
     ]
   } else {
     grid(
-      columns: (3fr, 1fr),
+      columns: (auto, 1fr),
+      align: top,
       smallcaps[
-        #_shadow_text(text(size: 30pt)[*#_name*])
+        #h(-1.3pt)#_shadow_text(text(size: 34pt, tracking: -0.04em, weight: 900)[#_name])
       ],
       smallcaps[
         // #if _no_links [
@@ -411,49 +436,30 @@
 
 #_resume(
   [Robert Ondino Morelli],
-  ("https://GitHub.com/robertmorelli", "GitHub:robertmorelli"),
+  ("https://GitHub.com/robertmorelli", "GitHub: robertmorelli"),
   [robertondino\@outlook.com],
-  [385 315 0034],
-  ("https://www.linkedin.com/in/robert-o-morelli/", "linkedin:robert-o-morelli"),
+  [385-315-0034],
+  ("https://www.linkedin.com/in/robert-o-morelli/", "LinkedIn: robert-o-morelli"),
   (
     _block([Education], (
       _item(
         _nolink(
           [B.S. Computer Science],
           [University of Utah],
-          [Expected May 2027],
+          [May 2027],
         ),
         (),
       ),
     )),
-    _block([Skills], (
-      _item(
-        _nolink(
-          [Languages],
-          [],
-          [],
-        ),
-        (
-          [Zig, C/C++, Python, Java, TypeScript/JS],
-        ),
-      ),
-      _item(
-        _nolink(
-          [Tools],
-          [],
-          [],
-        ),
-        (
-          [Git, Docker, GitHub Actions, CI/CD],
-        ),
-      ),
+    _block([Familiarity], (
+      [Zig, C/C++, C\#, Python, Java, TypeScript/JS, WebAssembly/WasmGC, Qt, Git, Docker, GitHub Actions, Fastlane, CI/CD],
     )),
     _block([Experience], (
       _item(
         _nolink(
           [Research Assistant],
           [University of Utah],
-          [October 2025 - Present],
+          _span([Oct 2025], [Present]),
         ),
         (
           [Analyzing performance cost of gradual typing in Meta's Static Python (CinderX)],
@@ -465,7 +471,7 @@
         _nolink(
           [Teaching Assistant],
           [University of Utah],
-          [September 2025 - May 2026],
+          _span([Sep 2025], [May 2026]),
         ),
         (
           [Led labs, graded, and assisted students for COMP 1020],
@@ -475,30 +481,30 @@
         _nolink(
           [Software Engineer/DevOps],
           [Stutor Inc.],
-          [September 2023 - April 2024],
+          _span([Sep 2023], [Apr 2024]),
         ),
         (
           [Architected automation pipeline using Fastlane and GitHub Actions to build, sign and deploy to multiple platforms],
-          [Added compound keys to tables where backend queries had drifted from database schema; query times reduced from 15s+ to \<1s],
+          [Added compound keys to tables where backend queries had drifted from database schema;\ query times reduced from 15+ s to \<1 s],
         ),
       ),
       _item(
         _nolink(
           [Web Developer/DevOps],
           [Jerran Software Solutions],
-          [April 2022 - September 2023],
+          _span([Apr 2022], [Sep 2023]),
         ),
         (
-          [Software consulting. Clients included LDS Church, Retro Game Vault and Stutor Inc.],
-          [Architected, proposed and implemented overhaul of development process for the LDS MTC team using build automation in conjunction with new QA practices. Deployment was reduced from a week-long headache to mere minutes],
-          [Rewrote Embark startup using dependency-ordered queue for async initializations; First-time loading reduced by 50%],
+          [Software consulting; clients included the LDS Church, Retro Game Vault and Stutor Inc.],
+          [Architected, proposed and implemented overhaul of development process for the LDS MTC team using build automation in conjunction with new QA practices; deployment was reduced from a week-long headache to mere minutes],
+          [Rewrote Embark startup using dependency-ordered queue for async initializations; first-time loading reduced by 50%],
         ),
       ),
       _item(
         _nolink(
           [Research Assistant Intern],
           [Earl Keefe PhD, University of Utah],
-          [November 2020 - June 2021],
+          _span([Nov 2020], [Jun 2021]),
         ),
         (
           [Used pypng to construct novel visualizations of covariance matrices to provide more intuitive understanding of data],
@@ -509,10 +515,10 @@
         _nolink(
           [Web Development Intern],
           [Frelii],
-          [June 2019 - September 2019],
+          _span([Jun 2019], [Sep 2019]),
         ),
         (
-          [Implemented web scraping SNPedia for AI training using python with multiprocessing and BeautifulSoup],
+          [Implemented web scraping SNPedia for AI training using Python with multiprocessing and BeautifulSoup],
         ),
       ),
     )),
@@ -525,7 +531,7 @@
           [],
         ),
         (
-          [The inverted regex fuzzer generates accept and reject string seeds and fuzzes patterns instead of inputs across \~25 engines],
+          [The inverted regex fuzzer generates accept and reject string seeds\ and fuzzes patterns instead of inputs across \~25 engines],
         ),
       ),
       _item(
@@ -536,7 +542,7 @@
           [],
         ),
         (
-          [The language AssemblyScript was meant to be. A language designed from the ground up to have predictable lowering to WasmGC, have small bundle size, and support .d.ts as an ABI],
+          [The language AssemblyScript was meant to be: designed from the ground up to have predictable lowering to WasmGC, have small bundle size, and support .d.ts as an ABI],
         ),
       ),
       // _item(
@@ -672,7 +678,7 @@
       //   ),
       // ),
     )),
-    _block([Misc], (
+    _block([Open source & competitions], (
       _item(
         _link(
           [Contributed to open-source IDE code-base],
@@ -681,7 +687,7 @@
           [],
         ),
         (
-          [Discovered and corrected oversight in the MARS IDE's instruction decoder that affected correctness of self-modifying code],
+          [Discovered and corrected oversight in the MARS IDE's instruction decoder\ that affected correctness of self-modifying code],
         ),
       ),
       _item(
@@ -706,7 +712,7 @@
       ),
       _item(
         _link(
-          [Competitive Programming],
+          [Competitive programming],
           [ICPC],
           "https://rmc25.kattis.com/contests/rmc25/standings/site",
           [],
@@ -718,23 +724,13 @@
       ),
       _item(
         _nolink(
-          [Jane Street Leaderboard],
+          [Jane Street leaderboard],
           [],
           [],
         ),
         (
-          _link(
-            [Number Cross 5],
-            [],
-            "https://www.janestreet.com/puzzles/number-cross-5-solution/",
-            [],
-          ),
-          _link(
-            [Sum One, Somewhere],
-            [],
-            "https://www.janestreet.com/puzzles/sum-one-somewhere-solution/",
-            [],
-          ),
+          _sublink([Number Cross 5], "https://www.janestreet.com/puzzles/number-cross-5-solution/"),
+          _sublink([Sum One, Somewhere], "https://www.janestreet.com/puzzles/sum-one-somewhere-solution/"),
         ),
       ),
     )),
