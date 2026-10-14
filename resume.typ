@@ -697,7 +697,7 @@
       //   ),
       // ),
     )),
-    _block([Open source & competitions], (
+    _block([Misc], (
       _item(
         _link(
           [Contributed to open-source IDE code-base],
