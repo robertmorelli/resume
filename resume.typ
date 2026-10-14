@@ -10,8 +10,8 @@
 #let _centered_header = false
 #let _no_links = false
 #let _base_font_size = 9pt
-#let _density = 0.75
-#let _diff = 1.1
+#let _density = 0.7768
+#let _diff = 1.251
 #let _heading_diff = 1.5 // section heading size relative to base
 #let _body_weight = 600
 #let _stacked_header = true // compact header: name left, contact details right
@@ -40,11 +40,13 @@
 
 
 #let _link_color = if _dark_mode {
-  rgb("#eae")
+  // rgb("#eae")
+  rgb("#FFF")
 } else {
   // _navy_blue
   // rgb("#0bb")
-  rgb("#00cdb8")
+  // rgb("#00cdb8")
+  rgb("#000")
 }
 
 #let _rule_color = if _dark_mode { rgb("#eee") } else { rgb("#151515") } // full contrast: hard edges
@@ -150,9 +152,9 @@
     [~(#_content)]
   } else if _stack_dates {
     if _content != [] {
-      place(top + right, block(width: _date_col, align(right,
-        if _right_aligned_italic { emph(_content) } else { _content },
-      )))
+      place(top + right, block(width: _date_col, align(right, if _right_aligned_italic { emph(_content) } else {
+        _content
+      })))
     }
   } else {
     h(1fr)
@@ -412,9 +414,14 @@
       #align(right)[#_phone]
     ]
   } else if _stacked_header {
-    grid(columns: (auto, 1fr), align: horizon,
+    grid(
+      columns: (auto, 1fr),
+      align: horizon,
       smallcaps[#h(-1pt)#_shadow_text(text(size: _name_size, tracking: -0.04em, weight: 900)[#_name])],
-      align(right, text(0.85em)[#_header_link(_ghlink.at(1), _ghlink.at(0)) #h(1.2em) #_header_link(_linkedin.at(1), _linkedin.at(0)) #h(1.2em) #_phone #h(1.2em) #_email]),
+      align(right, text(0.85em)[#_header_link(_ghlink.at(1), _ghlink.at(0)) #h(1.2em) #_header_link(
+          _linkedin.at(1),
+          _linkedin.at(0),
+        ) #h(1.2em) #_phone #h(1.2em) #_email]),
     )
     v(_base_font_size * 0.2)
   } else {
@@ -468,7 +475,7 @@
       _item(
         _nolink(
           [Research Assistant],
-          [University of Utah],
+          [Ben Greenman PhD, University of Utah],
           _span([Oct 2025], [Present]),
         ),
         (
@@ -501,7 +508,7 @@
       _item(
         _nolink(
           [Web Developer/DevOps],
-          [Jerran Software Solutions, consulting],
+          [Jerran Software Solutions],
           _span([Apr 2022], [Sep 2023]),
         ),
         (
@@ -512,7 +519,7 @@
       ),
       _item(
         _nolink(
-          [Research Assistant Intern],
+          [Research Assistant],
           [Earl Keefe PhD, University of Utah],
           _span([Nov 2020], [Jun 2021]),
         ),
@@ -522,14 +529,14 @@
         ),
       ),
       // _item(
-        // _nolink(
-          // [Web Development Intern],
-          // [Frelii],
-          // _span([Jun 2019], [Sep 2019]),
-        // ),
-        // (
-          // [Implemented web scraping SNPedia for AI training using Python with multiprocessing and BeautifulSoup],
-        // ),
+      // _nolink(
+      // [Web Development Intern],
+      // [Frelii],
+      // _span([Jun 2019], [Sep 2019]),
+      // ),
+      // (
+      // [Implemented web scraping SNPedia for AI training using Python with multiprocessing and BeautifulSoup],
+      // ),
       // ),
     )),
     _block([Projects], (
@@ -646,15 +653,15 @@
         ),
       ),
       // _item(
-        // _link(
-          // [Color alchemy],
-          // [Qt/C++],
-          // "https://robertmorelli.GitHub.io/color_alchemy/",
-          // [],
-        // ),
-        // (
-          // [Beautiful game for learning color mixing, properly using OKLab color space for gradient construction and scoring],
-        // ),
+      // _link(
+      // [Color alchemy],
+      // [Qt/C++],
+      // "https://robertmorelli.GitHub.io/color_alchemy/",
+      // [],
+      // ),
+      // (
+      // [Beautiful game for learning color mixing, properly using OKLab color space for gradient construction and scoring],
+      // ),
       // ),
       // _item(
       //   _link(
@@ -736,15 +743,15 @@
         ),
       ),
       // _item(
-        // _nolink(
-          // [Jane Street leaderboard],
-          // [],
-          // [],
-        // ),
-        // (
-          // _sublink([Number Cross 5], "https://www.janestreet.com/puzzles/number-cross-5-solution/"),
-          // _sublink([Sum One, Somewhere], "https://www.janestreet.com/puzzles/sum-one-somewhere-solution/"),
-        // ),
+      // _nolink(
+      // [Jane Street leaderboard],
+      // [],
+      // [],
+      // ),
+      // (
+      // _sublink([Number Cross 5], "https://www.janestreet.com/puzzles/number-cross-5-solution/"),
+      // _sublink([Sum One, Somewhere], "https://www.janestreet.com/puzzles/sum-one-somewhere-solution/"),
+      // ),
       // ),
     )),
   ),
