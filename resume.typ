@@ -513,7 +513,7 @@
         ),
         (
           // [Software consulting; clients included the LDS Church, Retro Game Vault and Stutor Inc.],
-          [Architected, proposed and implemented overhaul of development process\ for the LDS MTC team using build automation\ in conjunction with new QA practices;\ deployment was reduced from a week-long headache to mere minutes],
+          [Architected, proposed and implemented overhaul of development process\ for the LDS MTC team using build automation and new QA practices;\ deployment was reduced from a week-long headache to mere minutes],
           [Rewrote Embark startup using dependency-ordered queue\ for async initializations; first-time loading reduced by 50%],
         ),
       ),
@@ -550,6 +550,7 @@
         (
           // [The inverted regex fuzzer generates accept and reject string seeds\ and fuzzes patterns instead of inputs across \~25 engines],
           [Fuzzes patterns instead of inputs: samples regexes\ that must match one fixed string and must reject another fixed string],
+          [Moddable runs IRX alongside their own fuzzing of the XS JS engine],
         ),
       ),
       _item(
