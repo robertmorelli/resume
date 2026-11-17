@@ -491,7 +491,7 @@
           _span([Sep 2025], [May 2026]),
         ),
         (
-          [Led labs, graded, and assisted students for COMP 1020],
+          // [Led labs, graded, and assisted students for COMP 1020],
         ),
       ),
       _item(
@@ -501,7 +501,7 @@
           _span([Sep 2023], [Apr 2024]),
         ),
         (
-          [Architected automation pipeline using Fastlane and GitHub Actions\ to build, sign and deploy to multiple platforms],
+          // [Architected automation pipeline using Fastlane and GitHub Actions\ to build, sign and deploy to multiple platforms],
           [Added compound keys to tables where backend queries had drifted\ from database schema; query times reduced from 15+ s to \<1 s],
         ),
       ),
@@ -513,7 +513,7 @@
         ),
         (
           // [Software consulting; clients included the LDS Church, Retro Game Vault and Stutor Inc.],
-          [Architected, proposed and implemented overhaul of development process\ for the LDS MTC team using build automation and new QA practices;\ deployment was reduced from a week-long headache to mere minutes],
+          // [Architected, proposed and implemented overhaul of development process\ for the LDS MTC team using build automation and new QA practices;\ deployment was reduced from a week-long headache to mere minutes],
           [Rewrote Embark startup using dependency-ordered queue\ for async initializations; first-time loading reduced by 50%],
         ),
       ),
@@ -551,6 +551,7 @@
           // [The inverted regex fuzzer generates accept and reject string seeds\ and fuzzes patterns instead of inputs across \~25 engines],
           [Fuzzes patterns instead of inputs: samples regexes\ that must match one fixed string and must reject another fixed string],
           [Moddable runs IRX alongside their own fuzzing of the XS JS engine],
+          [Found a Perl regex engine bug; CVE pending],
         ),
       ),
       _item(
@@ -562,7 +563,9 @@
         ),
         (
           // [The language AssemblyScript was meant to be: designed from the ground up to have predictable lowering to WasmGC, have small bundle size, and support .d.ts as an ABI],
-          [WasmGC language with predictable lowering,\ small bundles, and .d.ts as its ABI],
+          // [WasmGC language with predictable lowering,\ small bundles, and .d.ts as its ABI],
+          [On the size/speed Pareto frontier in all tested benchmarks],
+          [Comes with a web framework based on Emmet shorthand],
         ),
       ),
       // _item(
@@ -743,17 +746,16 @@
           [As Event Coordinator of the U of U technical coding club,\ organized and oversaw competitions (2026)],
         ),
       ),
-      // _item(
-      // _nolink(
-      // [Jane Street leaderboard],
-      // [],
-      // [],
-      // ),
-      // (
-      // _sublink([Number Cross 5], "https://www.janestreet.com/puzzles/number-cross-5-solution/"),
-      // _sublink([Sum One, Somewhere], "https://www.janestreet.com/puzzles/sum-one-somewhere-solution/"),
-      // ),
-      // ),
+      _item(
+        _nolink(
+          [Jane Street puzzles],
+          [],
+          [],
+        ),
+        (
+          [Solved Jane Street's monthly puzzles and made the solver leaderboard:\ #_sublink([Number Cross 5], "https://www.janestreet.com/puzzles/number-cross-5-solution/") and #_sublink([Sum One, Somewhere], "https://www.janestreet.com/puzzles/sum-one-somewhere-solution/")],
+        ),
+      ),
     )),
   ),
 )
