@@ -492,6 +492,7 @@
         ),
         (
           // [Led labs, graded, and assisted students for COMP 1020],
+          [Taught a lab of 20 students for COMP 1020 (Programming for All 2)],
         ),
       ),
       _item(
@@ -549,9 +550,9 @@
         ),
         (
           // [The inverted regex fuzzer generates accept and reject string seeds\ and fuzzes patterns instead of inputs across \~25 engines],
-          [Fuzzes patterns instead of inputs: samples regexes\ that must match one fixed string and must reject another fixed string],
+          [Property-based tester that fuzzes patterns instead of inputs:\ samples regexes that must match one fixed string and reject another],
           [Moddable runs IRX alongside their own fuzzing of the XS JS engine],
-          [Found a Perl regex engine bug; CVE pending],
+          [Reported 86 correctness bugs across V8, .NET and Perl (1 CVE pending)],
         ),
       ),
       _item(
@@ -564,7 +565,8 @@
         (
           // [The language AssemblyScript was meant to be: designed from the ground up to have predictable lowering to WasmGC, have small bundle size, and support .d.ts as an ABI],
           // [WasmGC language with predictable lowering,\ small bundles, and .d.ts as its ABI],
-          [On the size/speed Pareto frontier in all tested benchmarks],
+          [Size/speed Pareto-optimal vs. Rust, C++, Go, Kotlin and Swift on Wasm\ in all Computer Language Benchmarks Game programs, tested on d8 nightly],
+          [Lowers plainly to WasmGC structs/arrays so V8's optimizer does the work],
           [Comes with a web framework based on Emmet shorthand],
         ),
       ),
@@ -724,26 +726,27 @@
         ),
       ),
       _item(
-        _nolink(
-          [Regex bug hunting],
-          [],
-          [],
-        ),
-        (
-          // [Reported 46 correctness bugs across a wide variety\ of regular expression engines including Perl, .NET and V8],
-          [Reported 86 correctness bugs across a wide variety\ of regular expression engines including Perl, .NET and V8],
-        ),
-      ),
-      _item(
         _link(
           [Competitive programming],
           [ICPC],
-          "https://rmc25.kattis.com/contests/rmc25/standings/site",
+          "https://nacentral26.kattis.com/contests/nacentral26d1/standings/rocky-mountain/all",
           [],
         ),
         (
-          [As part of team "Big Cottonwood Coders",\ placed 12 out of 48 teams at the Rocky Mountain regional contest (2025)],
-          [As Event Coordinator of the U of U technical coding club,\ organized and oversaw competitions (2026)],
+          [Placed 8 out of 38 teams at the Rocky Mountain regional contest (2026)],
+          [Placed 12 out of 48 teams as "Big Cottonwood Coders" #_sublink([(2025)], "https://rmc25.kattis.com/contests/rmc25/standings/site")],
+          [Event Coordinator of the U of U coding club; organized competitions (2026)],
+        ),
+      ),
+      _item(
+        _nolink(
+          [Redo hackathon],
+          [],
+          [],
+        ),
+        (
+          [Won "Most Technical Build" for our app Utah Fit (Nov 2026)],
+          [Utah housing and roommate finder, monetized with Stripe-paid map ads],
         ),
       ),
       _item(
@@ -753,7 +756,7 @@
           [],
         ),
         (
-          [Solved Jane Street's monthly puzzles and made the solver leaderboard:\ #_sublink([Number Cross 5], "https://www.janestreet.com/puzzles/number-cross-5-solution/") and #_sublink([Sum One, Somewhere], "https://www.janestreet.com/puzzles/sum-one-somewhere-solution/")],
+          [Made the leaderboard for #_sublink([Number Cross 5], "https://www.janestreet.com/puzzles/number-cross-5-solution/") and #_sublink([Sum One, Somewhere], "https://www.janestreet.com/puzzles/sum-one-somewhere-solution/")],
         ),
       ),
     )),
