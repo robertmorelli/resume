@@ -479,7 +479,7 @@
           _span([Oct 2025], [Present]),
         ),
         (
-          [Analyzing performance cost of gradual typing\ in Meta's Static Python (CinderX)],
+          [Measuring gradual typing's cost in Meta's Static Python (CinderX)],
           [Automatic rewriting of Python code to construct test examples],
           [First author, "Automatic Cast Insertion\ to Evaluate Progressive Gradual Types" (under review)],
         ),
@@ -551,7 +551,7 @@
         (
           // [The inverted regex fuzzer generates accept and reject string seeds\ and fuzzes patterns instead of inputs across \~25 engines],
           [Property-based tester that fuzzes patterns instead of inputs:\ samples regexes that must match one fixed string and reject another],
-          [Moddable runs IRX alongside their own fuzzing of the XS JS engine],
+          [Moddable runs IRX alongside their own fuzzing of the XS JS engine;\ credited in their #_sublink([10.1.0 release notes], "https://github.com/Moddable-OpenSource/moddable/releases/tag/10.1.0")],
           [Reported 86 correctness bugs across V8, .NET and Perl (1 CVE pending)],
         ),
       ),
