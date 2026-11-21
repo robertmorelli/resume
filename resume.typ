@@ -565,8 +565,8 @@
         (
           // [The language AssemblyScript was meant to be: designed from the ground up to have predictable lowering to WasmGC, have small bundle size, and support .d.ts as an ABI],
           // [WasmGC language with predictable lowering,\ small bundles, and .d.ts as its ABI],
-          [Size/speed Pareto-optimal vs. Rust, C++, Go, Kotlin and Swift on Wasm\ in all Computer Language Benchmarks Game programs, tested on d8 nightly],
-          [Lowers plainly to WasmGC structs/arrays so V8's optimizer does the work],
+          [High-level, Rust-style syntax that lowers plainly to WasmGC],
+          [Demonstrates V8's WasmGC engine is size/speed Pareto-optimal vs. Rust,\ C++, Go, Kotlin and Swift in all Benchmarks Game programs #_sublink([(benchmarks)], "https://github.com/robertmorelli/utu/tree/main/benchmarks")],
           [Comes with a web framework based on Emmet shorthand],
         ),
       ),
@@ -655,7 +655,7 @@
           [],
         ),
         (
-          [Compiles spreadsheet formulas into a DLL,\ supporting optimizations including fast-math style unsafe float conversion],
+          [Compiles spreadsheet formulas to a DLL with fast-math optimizations],
         ),
       ),
       // _item(
@@ -712,7 +712,7 @@
           [],
         ),
         (
-          [Discovered and corrected oversight in the MARS IDE's instruction decoder\ that affected correctness of self-modifying code],
+          [Fixed a MARS instruction-decoder bug that broke self-modifying code],
         ),
       ),
       _item(
@@ -740,13 +740,14 @@
       ),
       _item(
         _nolink(
-          [Redo hackathon],
+          [Hackathons],
           [],
           [],
         ),
         (
-          [Won "Most Technical Build" for our app Utah Fit (Nov 2026)],
-          [Utah housing and roommate finder, monetized with Stripe-paid map ads],
+          [2nd place at #_sublink([Lassonde DevDay], "https://lassonde.utah.edu/devday") for BottleRockit (Nov 2026)],
+          [Vendor analytics across every platform's API, plus an AI agent over MCP],
+          [Won "Most Technical Build" at Redo for Utah Fit, a housing and roommate\ finder monetized with Stripe-paid map ads (Nov 2026)],
         ),
       ),
       _item(
