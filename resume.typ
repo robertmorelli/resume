@@ -544,7 +544,7 @@
       _item(
         _link(
           [IRX regex fuzzer],
-          [Zig],
+          [Zig, agentic coding],
           "https://github.com/robertmorelli/irx",
           [],
         ),
@@ -558,14 +558,14 @@
       _item(
         _link(
           [UTU language and compiler],
-          [JS/TS, WasmGC],
+          [JS/TS, WasmGC, agentic coding],
           "https://github.com/robertmorelli/utu",
           [],
         ),
         (
           // [The language AssemblyScript was meant to be: designed from the ground up to have predictable lowering to WasmGC, have small bundle size, and support .d.ts as an ABI],
           // [WasmGC language with predictable lowering,\ small bundles, and .d.ts as its ABI],
-          [High-level, Rust-style syntax that lowers plainly to WasmGC,\ letting V8 do all the optimizing],
+          [Designed for predictable lowering from Rust-style constructs to WasmGC,\ letting V8 do the optimizing],
           [Demonstrates V8's WasmGC engine is size/speed Pareto-optimal vs. Rust,\ C++, Go, Kotlin and Swift in all Benchmarks Game programs #_sublink([(benchmarks)], "https://github.com/robertmorelli/utu/tree/main/benchmarks")],
           [Comes with a web framework based on Emmet shorthand],
         ),
