@@ -502,7 +502,7 @@
         ),
         (
           // [Architected automation pipeline using Fastlane and GitHub Actions\ to build, sign and deploy to multiple platforms],
-          [Added compound keys to tables where backend queries had drifted\ from database schema; query times reduced from 15+ s to \<1 s],
+          [Added compound indexes where queries had drifted from the schema,\ turning 15+ s table scans into \<1 s lookups],
         ),
       ),
       _item(
@@ -514,7 +514,7 @@
         (
           // [Software consulting; clients included the LDS Church, Retro Game Vault and Stutor Inc.],
           // [Architected, proposed and implemented overhaul of development process\ for the LDS MTC team using build automation and new QA practices;\ deployment was reduced from a week-long headache to mere minutes],
-          [Rewrote Embark startup using dependency-ordered queue\ for async initializations; first-time loading reduced by 50%],
+          [Rewrote Embark startup as a dependency worklist of async inits;\ first-time loading reduced by 50%],
         ),
       ),
       _item(
@@ -524,7 +524,7 @@
           _span([Nov 2020], [Jun 2021]),
         ),
         (
-          [Used pypng to construct novel visualizations of covariance matrices\ to provide more intuitive understanding of data],
+          [Built novel covariance-matrix visualizations with pypng],
           // [Implemented statistical formulas in clear code in order that a reviewer can be sure the results are correct and valid],
         ),
       ),
@@ -540,35 +540,6 @@
       // ),
     )),
     _block([Projects], (
-      _item(
-        _link(
-          [IRX regex fuzzer],
-          [Zig, agentic coding],
-          "https://github.com/robertmorelli/irx",
-          [],
-        ),
-        (
-          // [The inverted regex fuzzer generates accept and reject string seeds\ and fuzzes patterns instead of inputs across \~25 engines],
-          [Property-based tester that fuzzes patterns instead of inputs:\ samples regexes that must match one fixed string and reject another],
-          [Moddable runs IRX alongside their own fuzzing of the XS JS engine;\ credited in their #_sublink([10.1.0 release notes], "https://github.com/Moddable-OpenSource/moddable/releases/tag/10.1.0")],
-          [Reported 86 correctness bugs across V8, .NET and Perl (1 CVE pending)],
-        ),
-      ),
-      _item(
-        _link(
-          [UTU language and compiler],
-          [JS/TS, WasmGC, agentic coding],
-          "https://github.com/robertmorelli/utu",
-          [],
-        ),
-        (
-          // [The language AssemblyScript was meant to be: designed from the ground up to have predictable lowering to WasmGC, have small bundle size, and support .d.ts as an ABI],
-          // [WasmGC language with predictable lowering,\ small bundles, and .d.ts as its ABI],
-          [Designed UTU so Rust-style constructs lower predictably to WasmGC,\ letting V8 do the optimizing],
-          [Thanks to V8's WasmGC, competitive in size and speed with Rust, C++,\ Go, Kotlin and Swift on Wasm #_sublink([(benchmarks)], "https://github.com/robertmorelli/utu/tree/main/benchmarks")],
-          [Comes with a web framework based on Emmet shorthand],
-        ),
-      ),
       // _item(
       //   _link(
       //     [MIPS assembly extension for VS Code],
@@ -689,6 +660,35 @@
         ),
         (
           [Compiles spreadsheet formulas to a DLL with fast-math optimizations],
+        ),
+      ),
+      _item(
+        _link(
+          [IRX regex fuzzer],
+          [Zig, agentic coding],
+          "https://github.com/robertmorelli/irx",
+          [],
+        ),
+        (
+          // [The inverted regex fuzzer generates accept and reject string seeds\ and fuzzes patterns instead of inputs across \~25 engines],
+          [Property-based tester that fuzzes patterns instead of inputs:\ samples regexes that must match one fixed string and reject another],
+          [Moddable runs IRX alongside their own fuzzing of the XS JS engine;\ credited in their #_sublink([10.1.0 release notes], "https://github.com/Moddable-OpenSource/moddable/releases/tag/10.1.0")],
+          [Reported 86 correctness bugs across V8, .NET and Perl (1 CVE pending)],
+        ),
+      ),
+      _item(
+        _link(
+          [UTU language and compiler],
+          [JS/TS, WasmGC, agentic coding],
+          "https://github.com/robertmorelli/utu",
+          [],
+        ),
+        (
+          // [The language AssemblyScript was meant to be: designed from the ground up to have predictable lowering to WasmGC, have small bundle size, and support .d.ts as an ABI],
+          // [WasmGC language with predictable lowering,\ small bundles, and .d.ts as its ABI],
+          [Designed UTU so Rust-style constructs lower predictably to WasmGC,\ letting V8 do the optimizing],
+          [Thanks to V8's WasmGC, competitive in size and speed with Rust, C++,\ Go, Kotlin and Swift on Wasm #_sublink([(benchmarks)], "https://github.com/robertmorelli/utu/tree/main/benchmarks")],
+          [Comes with a web framework based on Emmet shorthand],
         ),
       ),
       // _item(
