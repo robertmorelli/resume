@@ -10,7 +10,7 @@
 #let _centered_header = false
 #let _no_links = false
 #let _base_font_size = 8.5pt
-#let _density = 0.7768
+#let _density = 0.76
 #let _diff = 1.251
 #let _heading_diff = 1.5 // section heading size relative to base
 #let _body_weight = 600
@@ -70,8 +70,8 @@
 
 #set page(
   margin: (
-    top: 0.8cm,
-    bottom: 0.7cm,
+    top: 0.65cm,
+    bottom: 0.55cm,
     left: 0.6cm,
     right: 0.6cm,
   ),
@@ -457,7 +457,7 @@
   [385-315-0034],
   ("https://www.linkedin.com/in/robert-o-morelli/", "LinkedIn: robert-o-morelli"),
   (
-    _block([Education], (
+    _block([Education & skills], (
       _item(
         _nolink(
           [B.S. Computer Science],
@@ -466,10 +466,8 @@
         ),
         (),
       ),
-    )),
-    _block([Technical skills], (
       // [Zig, C/C++, C\#, Python, Java, TypeScript/JS, WebAssembly/WasmGC, Qt, Git, Docker, GitHub Actions, Fastlane, CI/CD],
-      [Zig, C/C++, C\#, Python, Java, TS, WASM, Git, Docker, GitHub Actions, CI/CD],
+      [Zig, C/C++, C\#, Rust, Swift, Python, Java, TS, WASM, Git, Docker, GitHub Actions, CI/CD],
     )),
     _block([Experience], (
       _item(
@@ -480,8 +478,9 @@
         ),
         (
           [Measuring gradual typing's cost in Meta's Static Python (CinderX)],
-          [Automatic rewriting of Python code to construct test examples],
+          [#_sublink([Automatic rewriting], "https://github.com/robertmorelli/detyper_cinderx") of Python code to construct test examples],
           [First author, "Automatic Cast Insertion\ to Evaluate Progressive Gradual Types" (under review)],
+          [Reported 11 bugs in CinderX and contributed 2 fixes to the type-checker],
         ),
       ),
       _item(
@@ -566,7 +565,7 @@
           // [The language AssemblyScript was meant to be: designed from the ground up to have predictable lowering to WasmGC, have small bundle size, and support .d.ts as an ABI],
           // [WasmGC language with predictable lowering,\ small bundles, and .d.ts as its ABI],
           [Designed UTU so Rust-style constructs lower predictably to WasmGC,\ letting V8 do the optimizing],
-          [Demonstrates V8's WasmGC engine is size/speed Pareto-optimal vs. Rust,\ C++, Go, Kotlin and Swift in all Benchmarks Game programs #_sublink([(benchmarks)], "https://github.com/robertmorelli/utu/tree/main/benchmarks")],
+          [Thanks to V8's WasmGC, competitive in size and speed with Rust, C++,\ Go, Kotlin and Swift on Wasm #_sublink([(benchmarks)], "https://github.com/robertmorelli/utu/tree/main/benchmarks")],
           [Comes with a web framework based on Emmet shorthand],
         ),
       ),
@@ -661,6 +660,28 @@
       ),
       _item(
         _link(
+          [english.wasm],
+          [Zig, Wasm],
+          "https://github.com/robertmorelli/english",
+          [],
+        ),
+        (
+          [All 234k English words in a 2.3 MB Wasm trie with popcount-indexed nodes],
+        ),
+      ),
+      _item(
+        _link(
+          [TinyNKRO.OS],
+          [Zig, x86],
+          "https://github.com/robertmorelli/TinyNKRO.OS",
+          [],
+        ),
+        (
+          [Tiny bare-metal x86 kernel that polls the PS/2 port and shows held keys via VGA],
+        ),
+      ),
+      _item(
+        _link(
           [Spreadsheet formulas to DLL compiler],
           [C\#],
           "https://GitHub.com/robertmorelli/dll_compiler",
@@ -725,16 +746,6 @@
         ),
         (
           [Fixed a MARS instruction-decoder bug that broke self-modifying code],
-        ),
-      ),
-      _item(
-        _nolink(
-          [CinderX bug hunting],
-          [CinderX],
-          [],
-        ),
-        (
-          [Reported 11 bugs in CinderX and contributed 2 fixes to the type-checker],
         ),
       ),
       _item(
