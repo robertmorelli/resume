@@ -565,7 +565,7 @@
         (
           // [The language AssemblyScript was meant to be: designed from the ground up to have predictable lowering to WasmGC, have small bundle size, and support .d.ts as an ABI],
           // [WasmGC language with predictable lowering,\ small bundles, and .d.ts as its ABI],
-          [Designed for predictable lowering from Rust-style constructs to WasmGC,\ letting V8 do the optimizing],
+          [Designed UTU so Rust-style constructs lower predictably to WasmGC,\ letting V8 do the optimizing],
           [Demonstrates V8's WasmGC engine is size/speed Pareto-optimal vs. Rust,\ C++, Go, Kotlin and Swift in all Benchmarks Game programs #_sublink([(benchmarks)], "https://github.com/robertmorelli/utu/tree/main/benchmarks")],
           [Comes with a web framework based on Emmet shorthand],
         ),
