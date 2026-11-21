@@ -745,9 +745,8 @@
           [],
         ),
         (
-          [2nd place at #_sublink([Lassonde DevDay], "https://lassonde.utah.edu/devday") for BottleRockit (Nov 2026)],
-          [Vendor analytics across every platform's API, plus an AI agent over MCP],
-          [Won "Most Technical Build" at Redo for Utah Fit, a housing and roommate\ finder monetized with Stripe-paid map ads (Nov 2026)],
+          [2nd place at #_sublink([Lassonde DevDay], "https://lassonde.utah.edu/devday"): BottleRockit, AI vendor analytics (2026)],
+          [Won "Most Technical Build" at Redo: Utah Fit, a housing finder (2026)],
         ),
       ),
       _item(
