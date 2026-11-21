@@ -9,7 +9,7 @@
 #let _line_above = false
 #let _centered_header = false
 #let _no_links = false
-#let _base_font_size = 9pt
+#let _base_font_size = 8.5pt
 #let _density = 0.7768
 #let _diff = 1.251
 #let _heading_diff = 1.5 // section heading size relative to base
@@ -421,7 +421,7 @@
       align(right, text(0.85em)[#_header_link(_ghlink.at(1), _ghlink.at(0)) #h(1.2em) #_header_link(
           _linkedin.at(1),
           _linkedin.at(0),
-        ) #h(1.2em) #_phone #h(1.2em) #_email]),
+        )\ #_phone #h(1.2em) #_email]),
     )
     v(_base_font_size * 0.2)
   } else {
@@ -647,6 +647,18 @@
       //     [Well optimized Held-karp TSP algorithm using bitsets and Gosper's hack],
       //   )
       // ),
+      _item(
+        _link(
+          [JPL compiler],
+          [Rust],
+          "https://github.com/EdwardStanford7/CS4470-Rust",
+          [],
+        ),
+        (
+          [Pair-programmed a full compiler for the U of U compilers course:\ parser, type checker, x86-64 codegen],
+          [Optimizations include strength reduction and tensor-contraction loop rewriting],
+        ),
+      ),
       _item(
         _link(
           [Spreadsheet formulas to DLL compiler],
