@@ -633,17 +633,6 @@
       ),
       _item(
         _link(
-          [english.wasm],
-          [Zig, Wasm],
-          "https://github.com/robertmorelli/english",
-          [],
-        ),
-        (
-          [All 234k English words in a 2.3 MB Wasm trie with popcount-indexed nodes],
-        ),
-      ),
-      _item(
-        _link(
           [TinyNKRO.OS],
           [Zig, x86],
           "https://github.com/robertmorelli/TinyNKRO.OS",
@@ -703,6 +692,17 @@
           [Designed UTU so Rust-style constructs lower predictably to WasmGC,\ letting V8 do the optimizing],
           [Thanks to V8's WasmGC, competitive in size and speed with Rust, C++,\ Go, Kotlin and Swift on Wasm #_sublink([(benchmarks)], "https://github.com/robertmorelli/utu/tree/main/benchmarks")],
           [Comes with a web framework based on Emmet shorthand],
+        ),
+      ),
+      _item(
+        _link(
+          [english.wasm],
+          [Zig, Wasm, agentic coding],
+          "https://github.com/robertmorelli/english",
+          [],
+        ),
+        (
+          [All 234k English words in a 2.3 MB Wasm trie with popcount-indexed nodes],
         ),
       ),
       // _item(
