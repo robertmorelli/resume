@@ -138,6 +138,8 @@
   weight: _body_weight,
   _base_font_size,
 )
+// inline code matches body text instead of typst's smaller default mono
+#show raw: set text(font: "Cartograph CF", size: _base_font_size, weight: _body_weight)
 // bold = font's heaviest weight, so titles never fall below a heavy body
 #show strong: it => text(weight: 900, it.body)
 #set par(
@@ -664,6 +666,18 @@
       ),
       _item(
         _link(
+          [Truly branchless FizzBuzz],
+          [MIPS],
+          "https://github.com/robertmorelli/unhinged_fizzbuzz",
+          [],
+        ),
+        (
+          [Self-modifying exit: underflow flips one bit, turning `j loop` into `syscall`],
+          [Traced bad output to a MARS `syscall`-decoding bug; #_sublink([fix merged upstream], "https://GitHub.com/dpetersanderson/MARS")],
+        ),
+      ),
+      _item(
+        _link(
           [IRX regex fuzzer],
           [Zig, agentic coding],
           "https://github.com/robertmorelli/irx",
@@ -737,17 +751,18 @@
       // ),
     )),
     _block([Misc], (
-      _item(
-        _link(
-          [Contributed to open-source IDE code-base],
-          [MARS],
-          "https://GitHub.com/dpetersanderson/MARS",
-          [],
-        ),
-        (
-          [Fixed a MARS instruction-decoder bug that broke self-modifying code],
-        ),
-      ),
+      // folded into the branchless FizzBuzz project
+      // _item(
+      //   _link(
+      //     [Contributed to open-source IDE code-base],
+      //     [MARS],
+      //     "https://GitHub.com/dpetersanderson/MARS",
+      //     [],
+      //   ),
+      //   (
+      //     [Fixed a MARS instruction-decoder bug that broke self-modifying code],
+      //   ),
+      // ),
       _item(
         _link(
           [Competitive programming],
