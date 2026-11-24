@@ -10,7 +10,7 @@
 #let _centered_header = false
 #let _no_links = false
 #let _base_font_size = 8.5pt
-#let _density = 0.76
+#let _density = 0.73
 #let _diff = 1.251
 #let _heading_diff = 1.5 // section heading size relative to base
 #let _body_weight = 600
@@ -627,7 +627,7 @@
           [],
         ),
         (
-          [Built a compiler with a partner for the U of U compilers class (parser, type checker, x64 codegen)],
+          [Pair programmed a complete compiler with an x86 backend],
           [Implemented strength reduction and tensor contraction loop rewriting],
         ),
       ),
@@ -651,6 +651,7 @@
         ),
         (
           [Compiles spreadsheet formulas into a DLL with fast math optimizations],
+          [Includes a formula CFG for fuzzing],
         ),
       ),
       _item(
@@ -661,8 +662,8 @@
           [],
         ),
         (
-          [Exits using SMC when underflow flips `j loop` into `syscall`],
-          [Tracked down bad output to a `syscall` bug in MARS and got a #_sublink([fix merged], "https://GitHub.com/dpetersanderson/MARS")],
+          [Uses SMC to mutate an unconditional jump into `syscall` via integer underflow masked into the instruction],
+          [Discovered and #_sublink([contributed a fix], "https://GitHub.com/dpetersanderson/MARS") for instruction decoding oversight in MARS],
         ),
       ),
       _item(
@@ -703,6 +704,7 @@
         ),
         (
           [Fits all 234k English words into a 2.3 MB Wasm trie using popcount indexing],
+          [Uses variable length and bigram encodings to improve trie compression],
         ),
       ),
       // _item(
