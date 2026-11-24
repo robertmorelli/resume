@@ -469,7 +469,7 @@
         (),
       ),
       // [Zig, C/C++, C\#, Python, Java, TypeScript/JS, WebAssembly/WasmGC, Qt, Git, Docker, GitHub Actions, Fastlane, CI/CD],
-      [Zig, C/C++, C\#, Rust, Swift, Python, Java, TS, WASM, Git, Docker, GitHub Actions, CI/CD],
+      [Zig, C/C++, C\#, Rust, Swift, Python, Java, TS, Wasm, Git, Docker, GitHub Actions, CI/CD],
     )),
     _block([Experience], (
       _item(
@@ -479,10 +479,10 @@
           _span([Oct 2025], [Present]),
         ),
         (
-          [Measuring gradual typing's cost in Meta's Static Python (CinderX)],
-          [#_sublink([Automatic rewriting], "https://github.com/robertmorelli/detyper_cinderx") of Python code to construct test examples],
-          [First author, "Automatic Cast Insertion\ to Evaluate Progressive Gradual Types" (under review)],
-          [Reported 11 bugs in CinderX and contributed 2 fixes to the type-checker],
+          [Measuring gradual typing performance in Meta's Static Python (CinderX)],
+          [Wrote a tool that #_sublink([rewrites Python code automatically], "https://github.com/robertmorelli/detyper_cinderx") to make test cases],
+          [First author of "Automatic Cast Insertion to Evaluate Progressive Gradual Types" (under review)],
+          [Reported 11 bugs in CinderX and submitted 2 fixes to the type checker],
         ),
       ),
       _item(
@@ -504,7 +504,7 @@
         ),
         (
           // [Architected automation pipeline using Fastlane and GitHub Actions\ to build, sign and deploy to multiple platforms],
-          [Added compound indexes where queries had drifted from the schema,\ turning 15+ s table scans into \<1 s lookups],
+          [Added compound indexes for slow queries and brought 15+ second table scans under a second],
         ),
       ),
       _item(
@@ -516,7 +516,7 @@
         (
           // [Software consulting; clients included the LDS Church, Retro Game Vault and Stutor Inc.],
           // [Architected, proposed and implemented overhaul of development process\ for the LDS MTC team using build automation and new QA practices;\ deployment was reduced from a week-long headache to mere minutes],
-          [Rewrote Embark startup as a dependency worklist of async inits;\ first-time loading reduced by 50%],
+          [Rewrote Embark's startup with an async dependency worklist, cutting initial load times in half],
         ),
       ),
       _item(
@@ -526,7 +526,7 @@
           _span([Nov 2020], [Jun 2021]),
         ),
         (
-          [Built novel covariance-matrix visualizations with pypng],
+          [Built covariance matrix visualizations in Python with pypng],
           // [Implemented statistical formulas in clear code in order that a reviewer can be sure the results are correct and valid],
         ),
       ),
@@ -627,8 +627,8 @@
           [],
         ),
         (
-          [Pair-programmed a full compiler for the U of U compilers course:\ parser, type checker, x86-64 codegen],
-          [Optimizations include strength reduction and tensor-contraction loop rewriting],
+          [Built a compiler with a partner for the U of U compilers class (parser, type checker, x64 codegen)],
+          [Implemented strength reduction and tensor contraction loop rewriting],
         ),
       ),
       _item(
@@ -639,7 +639,7 @@
           [],
         ),
         (
-          [Tiny bare-metal x86 kernel that polls the PS/2 port and shows held keys via VGA],
+          [Small x86 kernel that reads PS/2 keyboard input and draws held keys over VGA],
         ),
       ),
       _item(
@@ -650,7 +650,7 @@
           [],
         ),
         (
-          [Compiles spreadsheet formulas to a DLL with fast-math optimizations],
+          [Compiles spreadsheet formulas into a DLL with fast math optimizations],
         ),
       ),
       _item(
@@ -661,8 +661,8 @@
           [],
         ),
         (
-          [Self-modifying exit: underflow flips one bit, turning `j loop` into `syscall`],
-          [Traced bad output to a MARS `syscall`-decoding bug; #_sublink([fix merged upstream], "https://GitHub.com/dpetersanderson/MARS")],
+          [Exits using SMC when underflow flips `j loop` into `syscall`],
+          [Tracked down bad output to a `syscall` bug in MARS and got a #_sublink([fix merged], "https://GitHub.com/dpetersanderson/MARS")],
         ),
       ),
       _item(
@@ -674,9 +674,9 @@
         ),
         (
           // [The inverted regex fuzzer generates accept and reject string seeds\ and fuzzes patterns instead of inputs across \~25 engines],
-          [Property-based tester that fuzzes patterns instead of inputs:\ samples regexes that must match one fixed string and reject another],
-          [Moddable runs IRX alongside their own fuzzing of the XS JS engine;\ credited in their #_sublink([10.1.0 release notes], "https://github.com/Moddable-OpenSource/moddable/releases/tag/10.1.0")],
-          [Reported 86 correctness bugs across V8, .NET and Perl (1 CVE pending)],
+          [PBT tool that fuzzes patterns instead of inputs by generating regexes that match one string and reject another],
+          [Moddable uses it to test their XS JavaScript engine and credited it in their #_sublink([10.1.0 release notes], "https://github.com/Moddable-OpenSource/moddable/releases/tag/10.1.0")],
+          [Reported 86 correctness bugs across V8, .NET, and Perl (1 CVE pending)],
         ),
       ),
       _item(
@@ -689,8 +689,8 @@
         (
           // [The language AssemblyScript was meant to be: designed from the ground up to have predictable lowering to WasmGC, have small bundle size, and support .d.ts as an ABI],
           // [WasmGC language with predictable lowering,\ small bundles, and .d.ts as its ABI],
-          [Designed UTU so Rust-style constructs lower predictably to WasmGC,\ letting V8 do the optimizing],
-          [Thanks to V8's WasmGC, competitive in size and speed with Rust, C++,\ Go, Kotlin and Swift on Wasm #_sublink([(benchmarks)], "https://github.com/robertmorelli/utu/tree/main/benchmarks")],
+          [Compiles directly to WasmGC with syntax like Rust and leaves optimization to V8],
+          [V8's WasmGC makes it competitive with Rust, C++, Go, Kotlin, and Swift in Wasm size and speed #_sublink([(benchmarks)], "https://github.com/robertmorelli/utu/tree/main/benchmarks")],
           [Comes with a web framework based on Emmet shorthand],
         ),
       ),
@@ -702,7 +702,7 @@
           [],
         ),
         (
-          [All 234k English words in a 2.3 MB Wasm trie with popcount-indexed nodes],
+          [Fits all 234k English words into a 2.3 MB Wasm trie using popcount indexing],
         ),
       ),
       // _item(
@@ -771,9 +771,9 @@
           [],
         ),
         (
-          [Placed 8 out of 38 teams at the Rocky Mountain regional contest (2026)],
-          [Placed 12 out of 48 teams as "Big Cottonwood Coders" #_sublink([(2025)], "https://rmc25.kattis.com/contests/rmc25/standings/site")],
-          [Event Coordinator of the U of U coding club; organized competitions (2026)],
+          [Placed 8th out of 38 teams at the Rocky Mountain regional contest (2026)],
+          [Placed 12th out of 48 teams as "Big Cottonwood Coders" #_sublink([(2025)], "https://rmc25.kattis.com/contests/rmc25/standings/site")],
+          [Event coordinator for the U of U coding club, organizing competitions (2026)],
         ),
       ),
       _item(
@@ -783,8 +783,8 @@
           [],
         ),
         (
-          [2nd place at #_sublink([Lassonde DevDay], "https://lassonde.utah.edu/devday"): BottleRockit, AI vendor analytics (2026)],
-          [Won "Most Technical Build" at Redo: Utah Fit, a housing finder (2026)],
+          [2nd place at #_sublink([Lassonde DevDay], "https://lassonde.utah.edu/devday") for BottleRockit, AI vendor analytics (2026)],
+          [Won "Most Technical Build" at Redo for Utah Fit, a housing finder (2026)],
         ),
       ),
       _item(
